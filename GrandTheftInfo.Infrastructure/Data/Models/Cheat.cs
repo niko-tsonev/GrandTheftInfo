@@ -15,5 +15,8 @@ namespace GrandTheftInfo.Infrastructure.Data.Models
         [Required]
         [MaxLength(CheatCodeMaxLength)]
         public string CheatCode { get; set; } = null!;
+
+        [Required]
+        public int GameId { get; set; }
     }
 }
