@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using GrandTheftInfo.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace GrandTheftInfo.Extensions
@@ -13,6 +14,10 @@ namespace GrandTheftInfo.Extensions
 
         public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration config)
         {
+            var connectionString = config.GetConnectionString("GrandTheftInfoDb");
+            services.AddDbContext<GrandTheftInfoDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             return services;
@@ -20,6 +25,16 @@ namespace GrandTheftInfo.Extensions
 
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration config)
         {
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<GrandTheftInfoDbContext>();
 
             return services;
         }
