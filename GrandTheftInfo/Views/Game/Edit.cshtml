@@ -1,0 +1,40 @@
+﻿@model GameFormModel
+
+@{
+    ViewData["Title"] = "Edit Game";
+    var presentTime = DateTime.Now.ToString("dd/MM/yyyy");
+}
+
+<div class="container">
+    <h1 class="mt-4">Edit Game</h1>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post" asp-controller="Game" asp-action="Edit">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" type="text" value="@Model.Name" class="form-control" placeholder="GTA 1,2,3..." />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <input asp-for="Description" type="text" value="@Model.Description" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl"></label>
+                    <input asp-for="ImageUrl" type="text" value="@Model.ImageUrl" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="YearPublished"></label>
+                    <input asp-for="YearPublished" type="date" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="MissionCount"></label>
+                    <input asp-for="MissionCount" type="number" value="@Model.MissionCount" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Add" class="btn btn-outline-success" style="min-width: 140px" />
+    </form>
+</div>

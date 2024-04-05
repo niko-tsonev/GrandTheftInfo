@@ -1,4 +1,7 @@
-﻿using GrandTheftInfo.Infrastructure.Data;
+﻿using GrandTheftInfo.Core.Contracts;
+using GrandTheftInfo.Core.Services;
+using GrandTheftInfo.Infrastructure.Data;
+using GrandTheftInfo.Infrastructure.Data.Common;
 using GrandTheftInfo.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +12,7 @@ namespace GrandTheftInfo.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IGameService, GameService>();
 
             return services;
         }
@@ -18,6 +22,8 @@ namespace GrandTheftInfo.Extensions
             var connectionString = config.GetConnectionString("GrandTheftInfoDb");
             services.AddDbContext<GrandTheftInfoDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            services.AddScoped<IRepository, Repository>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

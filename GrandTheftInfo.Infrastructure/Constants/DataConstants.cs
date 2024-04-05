@@ -4,7 +4,12 @@
     {
         //Game
         public const int GameNameMaxLength = 50;
+        public const int GameNameMinLength = 5;
+        public const string GameNameErrorMessage = "The name of the game has to be between {2} and {1} characters long";
+
         public const int GameDescriptionMaxLength = 300;
+        public const int GameDescriptionMinLength = 10;
+
         public const int GameImageUrlMaxLength = 300;
 
         //Mission
