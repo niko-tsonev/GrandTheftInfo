@@ -22,5 +22,7 @@ namespace GrandTheftInfo.Infrastructure.Data.Models
 
         [Required]
         public int GameId { get; set; }
+
+        public Game Game { get; set; } = null!;
     }
 }

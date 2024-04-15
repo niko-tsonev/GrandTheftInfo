@@ -8,7 +8,7 @@ namespace GrandTheftInfo.Core.Contracts
 
         public Task<int> AddAsync(GameFormModel model);
 
-        public Task<GameViewModel?> GetByIdAsync(int id);
+        public Task<GameFormModel?> GetFormModelByIdAsync(int id);
 
         public Task EditAsync(int id, GameFormModel model);
 

@@ -7,90 +7,66 @@
 <div class="container">
     <h1 class="mt-4">Games</h1>
 
-    <div class="game-container">
+    <div class="row">
         @foreach (var game in Model)
         {
-            @* var url = game.ImageUrl != null ? game.ImageUrl.Split("/") : new string[1];
-            var imageUrl = url[url.Length - 1]; *@
-
-            <div class="game-item bg-primary">
-                <div class="game-img-container">
-                    <img class="game-img" src="@game.ImageUrl" alt="Card image cap">
-                </div>
-
-                <div class="game-body">
-                    <h5 class="card-title">@game.Name</h5>
-                    <div class="card-info">
-                        <a asp-controller="Game" asp-action="Edit" asp-route-id="@game.Id" class="btn btn-outline-warning"><b>Edit</b></a>
-                        @* <a asp-controller="Game" asp-action="Delete" asp-route-id="@game.Id" class="btn btn-outline-danger"><b>Delete</b></a> *@
-                        <form method="post" asp-controller="Game" asp-action="Delete" asp-route-id="@game.Id">
-                            <input type="submit" value="Delete" class="btn btn-outline-danger">
-                        </form>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">@game.Name</h2>
+                        <img class="card-img" src="@game.ImageUrl" alt="Card image cap">
+                        <div class="card-buttons card-padding">
+                            <a asp-controller="Mission" asp-action="Edit" asp-route-id="@game.Id" class="btn btn-outline-warning">Edit</a>
+                            <form method="post" asp-controller="Game" asp-action="Delete" asp-route-id="@game.Id">
+                                <input type="submit" value="Delete" class="btn btn-outline-danger">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         }
 
-        <!-- If Authorized as Admin (to be implemented) -->
-        <div class="game-item bg-primary">
-            <div class="game-img-container">
-                <img class="game-img" src="https://projetcartylion.fr/wp-content/uploads/2020/08/Placeholder.png" alt="Add New game">
-            </div>
-
-            <div class="game-body">
-                <h5 class="card-title">Add New Game</h5>
-                <a asp-controller="Game" asp-action="Add" class="btn btn-outline-success">Add New Game</a>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-buttons">
+                        <a asp-controller="Game" asp-action="Add" class="btn btn-outline-success">Add New Game</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- End-If -->
-
     </div>
 
 </div>
 
 <style>
-    .game-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    .game-item {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 320px;
-        border-radius: 5px;
-        position: relative;
-        box-shadow: 5px 5px 10px rgb(0 0 0 / 50%);
-        margin: 8px;
-    }
-
-    .game-img-container {
-        overflow: hidden;
-        height: 450px;
-    }
-
-    .game-img {
-        padding: 10px;
+    .card-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: center;
     }
 
-    .game-body {
-        padding: 20px;
-    }
-
     .card-title {
         color: #fff;
+        text-align: center;
     }
 
-    .card-info a, .card-info form {
-        display: inline-block;
-        padding: 10px;
+    .card-padding {
+        padding: 10px 10px 0 0;
     }
+
+    .card-buttons {
+        text-align: center;
+    }
+
+    .card-buttons a, .card-buttons form {
+        display: inline-block;
+    }
+
+    .card-buttons a, .card-buttons input {
+        padding: 10px;
+        font-weight: bold;
+    }
+
 </style>

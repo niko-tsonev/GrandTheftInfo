@@ -1,0 +1,123 @@
+﻿@model IEnumerable<GameMissionServiceModel>
+
+@{
+    ViewData["Title"] = "Missions";
+}
+
+<div class="container">
+
+    <div class="game-nav-container">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            @foreach (var game in Model)
+            {
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio-@game.Id" data-game-id="@game.Id" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio-@game.Id">@game.Name</label>
+            }
+        </div>
+    </div>
+
+
+    <div class="missions-container">
+        <div class="row">
+        @{
+            foreach (var game in Model)
+            {
+                foreach (var mission in game.Missions)
+                {
+                    <div class="col-sm-3 game-mission" data-game-id="@game.Id">
+                        <div class="card mb-3">
+                            <h5 class="card-header">@mission.Name</h5>
+                            <iframe class="iframe"
+                                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                            </iframe>
+                            <div class="card-body">
+                                <p class="card-text">@mission.Description</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@mission.GameName</li>
+                            </ul>
+                            <div class="card-body">
+                                <div class="card-info">
+                                    <a asp-controller="Mission" asp-action="Edit" asp-route-id="@mission.Id" class="btn btn-outline-warning">Edit</a>
+                                    <form method="post" asp-controller="Mission" asp-action="Delete" asp-route-id="@mission.Id">
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted">
+                                2 days ago
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+
+            <div class="col-sm-3">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-info">
+                            <a asp-controller="Mission" asp-action="Add" class="btn btn-outline-success">Add New Mission</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var radioButtons = document.querySelectorAll('.btn-check');
+
+        radioButtons.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var gameId = this.getAttribute('data-game-id');
+                var missions = document.querySelectorAll('.game-mission');
+
+                // Hide all missions
+                missions.forEach(function (mission) {
+                    mission.style.display = 'none';
+                });
+
+                // Show missions for the selected game
+                var selectedMissions = document.querySelectorAll('.game-mission[data-game-id="' + gameId + '"]');
+                selectedMissions.forEach(function (mission) {
+                    mission.style.display = 'block';
+                });
+            });
+        });
+    });
+</script>
+
+<style>
+    .iframe {
+        width: 100%;
+        height: 200px;
+    }
+
+    .card-title {
+        color: #fff;
+    }
+
+    .card-info {
+        text-align: center;
+    }
+
+    .card-info a, .card-info form {
+        display: inline-block;
+    }
+
+    .card-info a, .card-info input {
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .game-nav-container {
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+</style>

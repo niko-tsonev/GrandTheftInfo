@@ -1,10 +1,8 @@
 ﻿using GrandTheftInfo.Core.Contracts;
 using GrandTheftInfo.Core.Models.Game;
-using GrandTheftInfo.Infrastructure.Data;
 using GrandTheftInfo.Infrastructure.Data.Common;
 using GrandTheftInfo.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections;
 
 namespace GrandTheftInfo.Core.Services
 {
@@ -51,13 +49,12 @@ namespace GrandTheftInfo.Core.Services
             return game.Id;
         }
 
-        public async Task<GameViewModel?> GetByIdAsync(int id)
+        public async Task<GameFormModel?> GetFormModelByIdAsync(int id)
         {
             var game = await _repository.AllReadOnly<Game>()
-                .Where(g => g.Id == id)
-                .Select(g => new GameViewModel()
+                .Where (g => g.Id == id)
+                .Select(g => new GameFormModel()
                 {
-                    Id = g.Id,
                     Name = g.Name,
                     Description = g.Description,
                     ImageUrl = g.ImageUrl,

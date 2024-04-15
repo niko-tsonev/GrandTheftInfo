@@ -6,9 +6,6 @@ namespace GrandTheftInfo.Core.Models.Game
     public class GameFormModel
     {
         [Required]
-        public int Id { get; set; }
-
-        [Required]
         [StringLength(GameNameMaxLength, MinimumLength = GameNameMinLength,
             ErrorMessage = GameNameErrorMessage)]
         public string Name { get; set; } = null!;
@@ -21,7 +18,7 @@ namespace GrandTheftInfo.Core.Models.Game
         [StringLength(GameImageUrlMaxLength)]
         public string ImageUrl { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = "Date is invalid")]
         public DateTime YearPublished { get; set; }
 
         [Required]
