@@ -18,6 +18,10 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 data.CheatFour,
                 data.CheatFive,
                 data.CheatSix,
+                data.CheatSeven,
+                data.CheatEight,
+                data.CheatNine,
+                data.CheatTen
             });
         }
     }

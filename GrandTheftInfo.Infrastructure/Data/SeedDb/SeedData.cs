@@ -27,6 +27,10 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
         public Cheat CheatFour { get; set; } = null!;
         public Cheat CheatFive { get; set; } = null!;
         public Cheat CheatSix { get; set; } = null!;
+        public Cheat CheatSeven { get; set; } = null!;
+        public Cheat CheatEight { get; set; } = null!;
+        public Cheat CheatNine { get; set; } = null!;
+        public Cheat CheatTen { get; set; } = null!;
 
         public ApplicationUser GuestUser { get; set; } = null!;
 
@@ -79,8 +83,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Name = "GTA San Andreas",
                 Description = "Los Santos CJ helps family take over.",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg",
-                YearPublished = DateTime.Parse("11/26/2004"),
-                MissionCount = 100
+                YearPublished = DateTime.Parse("11/26/2004")
             };
 
             GameTwo = new Game()
@@ -89,8 +92,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Name = "GTA IV",
                 Description = "Niko helps cousing in Liberty City",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
-                YearPublished = DateTime.Parse("12/02/2008"),
-                MissionCount = 69
+                YearPublished = DateTime.Parse("12/02/2008")
             };
         }
 
@@ -140,6 +142,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Id = 1,
                 Name = "Money cheat",
                 CheatCode = "HESOYAM",
+                Platform = "PC",
                 GameId = 1
             };
 
@@ -148,6 +151,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Id = 2,
                 Name = "No police",
                 CheatCode = "AEZAKMI",
+                Platform = "PC",
                 GameId = 1
             };
 
@@ -156,6 +160,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Id = 3,
                 Name = "God mode cheat",
                 CheatCode = "BAGUVIX",
+                Platform = "PC",
                 GameId = 1
             };
 
@@ -164,6 +169,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Id = 4,
                 Name = "Money cheat",
                 CheatCode = "DEDAZNAM",
+                Platform = "PC",
                 GameId = 2
             };
 
@@ -172,6 +178,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Id = 5,
                 Name = "No police",
                 CheatCode = "BALSAMGO",
+                Platform = "PC",
                 GameId = 2
             };
 
@@ -180,6 +187,43 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Id = 6,
                 Name = "God mode cheat",
                 CheatCode = "NIZNAM",
+                Platform = "PC",
+                GameId = 2
+            };
+
+            CheatSeven = new Cheat()
+            {
+                Id = 7,
+                Name = "God mode cheat",
+                CheatCode = "Down, X, Right, Left, Right, R1, Right, Down, Up, Triangle",
+                Platform = "Playstation",
+                GameId = 1
+            };
+
+            CheatEight = new Cheat()
+            {
+                Id = 8,
+                Name = "Money cheat",
+                CheatCode = "R1, R2, L1, X, LEFT, DOWN, RIGHT, UP, LEFT, DOWN, RIGHT, UP",
+                Platform = "Playstation",
+                GameId = 1
+            };
+
+            CheatNine = new Cheat()
+            {
+                Id = 9,
+                Name = "Change weather",
+                CheatCode = "468-555-0100",
+                Platform = "Playstation",
+                GameId = 2
+            };
+
+            CheatTen = new Cheat()
+            {
+                Id = 10,
+                Name = "Weapons 1",
+                CheatCode = "486-555-0150",
+                Platform = "Playstation",
                 GameId = 2
             };
         }

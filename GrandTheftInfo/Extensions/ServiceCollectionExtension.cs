@@ -13,6 +13,8 @@ namespace GrandTheftInfo.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IGameService, GameService>();
+            services.AddScoped<IMissionService, MissionService>();
+            services.AddScoped<ICheatService, CheatService>();
 
             return services;
         }

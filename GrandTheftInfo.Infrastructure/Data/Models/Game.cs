@@ -23,8 +23,5 @@ namespace GrandTheftInfo.Infrastructure.Data.Models
         [Required]
         public DateTime YearPublished { get; set; }
 
-        [Required]
-        public int MissionCount { get; set; }
-
     }
 }

@@ -1,50 +1,55 @@
 ﻿using GrandTheftInfo.Core.Contracts;
-using GrandTheftInfo.Core.Models.Game;
+using GrandTheftInfo.Core.Models.Cheat;
+using GrandTheftInfo.Core.Services;
+using GrandTheftInfo.Infrastructure.Data.Models;
 using GrandTheftInfo.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GrandTheftInfo.Controllers
 {
-    public class GameController : Controller
+    public class CheatController : BaseController
     {
-        private readonly IGameService _gameService;
+        private readonly ICheatService _cheatService;
 
-        public GameController(IGameService gameService)
+        public CheatController(ICheatService cheatService, IGameService gameService) 
+            : base(gameService)
         {
-            _gameService = gameService;
+            _cheatService = cheatService;
         }
 
-        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var games = await _gameService.AllAsync();
+            var cheats = await _cheatService.AllAsync();
 
-            return View(games);
+            return View(cheats);
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            return View();
+            var model = new CheatFormModel();
+            model.Games = await GetAllGamesInfo();
+
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(GameFormModel model)
+        public async Task<IActionResult> Add(CheatFormModel model)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
             try
             {
-               await _gameService.AddAsync(model);
+                await _cheatService.AddAsync(model);
             }
             catch (Exception ex)
             {
-                return View("CustomError", new CustomErrorViewModel() 
+                return View("CustomError", new CustomErrorViewModel()
                 {
-                    Message = ex.Message 
+                    Message = ex.Message,
                 });
             }
 
@@ -54,38 +59,38 @@ namespace GrandTheftInfo.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var game = await _gameService.GetFormModelByIdAsync(id);
+            var cheat = await _cheatService.GetFormModelByIdAsync(id);
 
-            if (game == null)
+            if (cheat == null)
             {
                 return View("CustomError", new CustomErrorViewModel()
                 {
-                    Message = "Game not found"
+                    Message = "Cheat not found"
                 });
             }
 
-            var editModel = new GameFormModel()
+            var editModel = new CheatFormModel()
             {
-                Name = game.Name,
-                Description = game.Description,
-                ImageUrl = game.ImageUrl,
-                YearPublished = game.YearPublished,
-                MissionCount = game.MissionCount
+                Name = cheat.Name,
+                CheatCode = cheat.CheatCode,
+                Platform = cheat.Platform,
+                GameId = cheat.GameId,
+                Games = await GetAllGamesInfo(),
             };
 
             return View(editModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, GameFormModel model)
+        public async Task<IActionResult> Edit(int id, CheatFormModel model)
         {
-            var game = await _gameService.GetFormModelByIdAsync(id);
+            var cheat = await _cheatService.GetFormModelByIdAsync(id);
 
-            if (game == null)
+            if (cheat == null)
             {
                 return View("CustomError", new CustomErrorViewModel()
                 {
-                    Message = "Game not found"
+                    Message = "Cheat not found"
                 });
             }
 
@@ -96,7 +101,7 @@ namespace GrandTheftInfo.Controllers
 
             try
             {
-                await _gameService.EditAsync(id, model);
+                await _cheatService.EditAsync(id, model);
             }
             catch (Exception ex)
             {
@@ -112,19 +117,19 @@ namespace GrandTheftInfo.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var game = await _gameService.GetFormModelByIdAsync(id);
+            var mission = await _cheatService.GetFormModelByIdAsync(id);
 
-            if (game == null)
+            if (mission == null)
             {
                 return View("CustomError", new CustomErrorViewModel()
                 {
-                    Message = "Game not found"
+                    Message = "Mission not found"
                 });
             }
 
             try
             {
-                await _gameService.DeleteAsync(id);
+                await _cheatService.DeleteAsync(id);
             }
             catch (Exception ex)
             {

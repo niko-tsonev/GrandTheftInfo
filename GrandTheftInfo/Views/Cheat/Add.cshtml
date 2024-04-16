@@ -1,0 +1,40 @@
+﻿@model CheatFormModel
+
+@{
+    ViewData["Title"] = "Add Cheat";
+}
+
+<div class="container">
+    <h1 class="mt-4">Add Cheat</h1>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post" asp-controller="Cheat" asp-action="Add">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Money, Weapons, Cars" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="CheatCode"></label>
+                    <input asp-for="CheatCode" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Platform"></label>
+                    <input asp-for="Platform" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="GameId"></label>
+                    <select asp-for="GameId" class="form-control">
+                        @foreach (var game in Model.Games)
+                        {
+                            <option value="@game.Id">@game.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Add" class="btn btn-outline-success" style="min-width: 140px" />
+    </form>
+</div>

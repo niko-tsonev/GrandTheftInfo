@@ -22,7 +22,7 @@ namespace GrandTheftInfo.Core.Services
                 Name = model.Name,
                 Description = model.Description,
                 PlaytroughUrl = model.PlaytroughUrl,
-                GameId = model.GameId,
+                GameId = model.GameId
             };
 
             await _repository.AddAsync(mission);

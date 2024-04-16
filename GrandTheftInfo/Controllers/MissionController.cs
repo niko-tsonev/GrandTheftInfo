@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GrandTheftInfo.Controllers
 {
-    public class MissionController : Controller
+    public class MissionController : BaseController
     {
         private readonly IMissionService _missionService;
         private readonly IGameService _gameService;
 
         public MissionController(IMissionService missionService, IGameService gameService)
+            : base(gameService)
         {
             _missionService = missionService;
             _gameService = gameService;
@@ -42,7 +43,6 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Add()
         {
             var model = new MissionFormModel();
-
             model.Games = await GetAllGamesInfo();
 
             return View(model);
@@ -155,18 +155,6 @@ namespace GrandTheftInfo.Controllers
             }
 
             return RedirectToAction(nameof(Index));
-        }
-
-        //Helper methods
-        private async Task<IEnumerable<MissionGameServiceModel>> GetAllGamesInfo()
-        {
-            var games = await _gameService.AllAsync();
-
-            return games.Select(m => new MissionGameServiceModel()
-            {
-                Id = m.Id,
-                Name = m.Name
-            });
         }
     }
 }

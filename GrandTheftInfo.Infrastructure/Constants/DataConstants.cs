@@ -28,6 +28,7 @@
         //Cheat
         public const int CheatNameMaxLength = 50;
         public const int CheatCodeMaxLength = 150;
+        public const int CheatPlatformMaxLength = 50;
 
         //User
         public const int UserFirstNameMaxLength = 50;

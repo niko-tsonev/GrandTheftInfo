@@ -1,0 +1,116 @@
+﻿@model IEnumerable<CheatViewModel>
+
+@{
+    ViewData["Title"] = "Cheats";
+}
+
+<div class="container">
+    <div class="game-nav-container">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            @foreach (var game in Model.GroupBy(x => x.GameId))
+            {
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio-@game.Key" data-game-id="@game.Key" autocomplete="off" @if (game.First().GameId == Model.First().GameId)
+                {
+                    <text>checked</text>
+                }>
+                <label class="btn btn-outline-primary" for="btnradio-@game.Key">@game.First().GameName</label>
+            }
+        </div>
+    </div>
+
+    @foreach (var gameGroup in Model.GroupBy(x => x.GameId))
+    {
+        <div class="game-container" data-game-id="@gameGroup.Key" @* @if (gameGroup.First().GameId != Model.First().GameId)
+        {
+            <text>style="display: none;"</text>
+        } *@>
+            @foreach (var platformGroup in gameGroup.GroupBy(x => x.Platform))
+            {
+                        <div class="cheat-card" data-platform="@platformGroup.Key">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">@platformGroup.Key</h5>
+                                    <ul class="list-group">
+                                    @foreach (var cheat in platformGroup)
+                                    {
+                                        <li class="list-group-item">
+                                            <span>@cheat.Name - </span>
+                                            <span>@cheat.CheatCode</span>
+                                            <span class="card-buttons">
+                                                <a asp-controller="Cheat" asp-action="Edit" asp-route-id="@cheat.Id" class="btn btn-outline-warning">Edit</a>
+                                                <form method="post" asp-controller="Cheat" asp-action="Delete" asp-route-id="@cheat.Id">
+                                                    <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                                </form>
+                                            </span>
+                                        </li>
+                                    }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+            }
+            </div>
+    }
+
+    <div class="card-button-new">
+        <a asp-controller="Cheat" asp-action="Add" class="btn btn-outline-success">Add New Cheat</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var radioButtons = document.querySelectorAll('.btn-check');
+
+        // Show cheat cards for the first game
+        var firstGameId = '@Model.First().GameId';
+        var firstGameContainer = document.querySelector('.game-container[data-game-id="' + firstGameId + '"]');
+        firstGameContainer.style.display = 'block';
+
+        radioButtons.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var gameId = this.getAttribute('data-game-id');
+                var gameContainers = document.querySelectorAll('.game-container');
+
+                // Hide all game containers
+                gameContainers.forEach(function (container) {
+                    container.style.display = 'none';
+                });
+
+                // Show game container for the selected game
+                var selectedGameContainer = document.querySelector('.game-container[data-game-id="' + gameId + '"]');
+                selectedGameContainer.style.display = 'block';
+            });
+        });
+    });
+</script>
+
+<style>
+    .game-nav-container {
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .game-container {
+        display: none;
+    }
+
+    .cheat-card {
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        margin-bottom: 10px;
+    }
+
+    .card-button-new {
+        text-align: center;
+    }
+
+    .card-button-new a {
+        font-weight: bold;
+    }
+
+    .card-buttons a, .card-buttons form {
+        display: inline-block;
+    }
+</style>

@@ -24,8 +24,7 @@ namespace GrandTheftInfo.Core.Services
                     Name = g.Name,
                     Description = g.Description,
                     ImageUrl = g.ImageUrl,
-                    YearPublished = g.YearPublished,
-                    MissionCount = g.MissionCount,
+                    YearPublished = g.YearPublished
                 })
                 .ToListAsync();
 
@@ -39,8 +38,7 @@ namespace GrandTheftInfo.Core.Services
                 Name = model.Name,
                 Description = model.Description,
                 ImageUrl = model.ImageUrl,
-                YearPublished = model.YearPublished,
-                MissionCount = model.MissionCount
+                YearPublished = model.YearPublished
             };
 
             await _repository.AddAsync(game);
@@ -58,8 +56,7 @@ namespace GrandTheftInfo.Core.Services
                     Name = g.Name,
                     Description = g.Description,
                     ImageUrl = g.ImageUrl,
-                    YearPublished = g.YearPublished,
-                    MissionCount = g.MissionCount
+                    YearPublished = g.YearPublished
                 })
                 .FirstOrDefaultAsync();
 
@@ -76,7 +73,6 @@ namespace GrandTheftInfo.Core.Services
                 game.Description = model.Description;
                 game.ImageUrl = model.ImageUrl;
                 game.YearPublished = model.YearPublished;
-                game.MissionCount = model.MissionCount;
 
                 await _repository.SaveChangesAsync();
             }
