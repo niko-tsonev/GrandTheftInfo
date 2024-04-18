@@ -1,30 +1,19 @@
-﻿@model IEnumerable<GameMissionServiceModel>
+﻿@model IOrderedEnumerable<IGrouping<int,MissionViewModel>>
 
 @{
     ViewData["Title"] = "Missions";
 }
 
 <div class="container">
+    @await Html.PartialAsync("_GameNavigationPartial", Model)
 
-    <div class="game-nav-container">
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            @foreach (var game in Model)
-            {
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio-@game.Id" data-game-id="@game.Id" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio-@game.Id">@game.Name</label>
-            }
-        </div>
-    </div>
-
-
-    <div class="missions-container">
-        <div class="row">
+    <div class="row">
         @{
-            foreach (var game in Model)
+            foreach (var gameGroup in Model)
             {
-                foreach (var mission in game.Missions)
+                foreach (var mission in gameGroup)
                 {
-                    <div class="col-sm-3 game-mission" data-game-id="@game.Id">
+                    <div class="col-sm-3 game-mission" data-game-id="@gameGroup.Key">
                         <div class="card mb-3">
                             <h5 class="card-header">@mission.Name</h5>
                             <iframe class="iframe"
@@ -44,33 +33,29 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="card-footer text-muted">
-                                2 days ago
-                            </div>
+                            <div class="card-footer text-muted">2 days ago</div>
                         </div>
                     </div>
                 }
             }
         }
+    </div>
 
-            <div class="col-sm-3">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="card-info">
-                            <a asp-controller="Mission" asp-action="Add" class="btn btn-outline-success">Add New Mission</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+    <div class="card-button-new">
+        <a asp-controller="Mission" asp-action="Add" class="btn btn-outline-success">Add New Mission</a>
     </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var radioButtons = document.querySelectorAll('.btn-check');
+
+        // Show all missions for the first game when the page is loaded
+        var firstGameId = '@Model.First().Key';
+        var firstGameMissions = document.querySelectorAll('.game-mission[data-game-id="' + firstGameId + '"]');
+        firstGameMissions.forEach(function (mission) {
+            mission.style.display = 'block';
+        });
 
         radioButtons.forEach(function (radio) {
             radio.addEventListener('change', function () {
@@ -98,10 +83,6 @@
         height: 200px;
     }
 
-    .card-title {
-        color: #fff;
-    }
-
     .card-info {
         text-align: center;
     }
@@ -120,4 +101,15 @@
         text-align: center;
     }
 
+    .game-mission {
+        display: none;
+    }
+
+    .card-button-new {
+        text-align: center;
+    }
+
+    .card-button-new a {
+        font-weight: bold;
+    }
 </style>

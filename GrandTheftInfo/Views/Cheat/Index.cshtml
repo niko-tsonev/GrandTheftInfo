@@ -1,24 +1,13 @@
-﻿@model IEnumerable<CheatViewModel>
+﻿@model IOrderedEnumerable<IGrouping<int,CheatViewModel>>
 
 @{
     ViewData["Title"] = "Cheats";
 }
 
 <div class="container">
-    <div class="game-nav-container">
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            @foreach (var game in Model.GroupBy(x => x.GameId))
-            {
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio-@game.Key" data-game-id="@game.Key" autocomplete="off" @if (game.First().GameId == Model.First().GameId)
-                {
-                    <text>checked</text>
-                }>
-                <label class="btn btn-outline-primary" for="btnradio-@game.Key">@game.First().GameName</label>
-            }
-        </div>
-    </div>
+@await Html.PartialAsync("_GameNavigationPartial", Model)
 
-    @foreach (var gameGroup in Model.GroupBy(x => x.GameId))
+    @foreach (var gameGroup in Model)
     {
         <div class="game-container" data-game-id="@gameGroup.Key" @* @if (gameGroup.First().GameId != Model.First().GameId)
         {
@@ -62,7 +51,7 @@
         var radioButtons = document.querySelectorAll('.btn-check');
 
         // Show cheat cards for the first game
-        var firstGameId = '@Model.First().GameId';
+        var firstGameId = '@Model.First().Key';
         var firstGameContainer = document.querySelector('.game-container[data-game-id="' + firstGameId + '"]');
         firstGameContainer.style.display = 'block';
 
@@ -110,7 +99,15 @@
         font-weight: bold;
     }
 
+    .card-buttons a {
+        margin-left: 10px;
+    }
+
     .card-buttons a, .card-buttons form {
         display: inline-block;
+    }
+
+    .card-buttons a, .card-buttons input {
+        padding: 3px;
     }
 </style>

@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GrandTheftInfo.Core.Contracts.ServiceModels;
 
 namespace GrandTheftInfo.Core.Models.Cheat
 {
-    public class CheatViewModel
+    public class CheatViewModel : IGameServiceModel
     {
         public int Id { get; set; }
 

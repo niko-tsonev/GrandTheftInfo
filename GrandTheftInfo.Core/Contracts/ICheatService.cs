@@ -1,5 +1,4 @@
 ﻿using GrandTheftInfo.Core.Models.Cheat;
-using GrandTheftInfo.Core.Models.Mission;
 
 namespace GrandTheftInfo.Core.Contracts
 {

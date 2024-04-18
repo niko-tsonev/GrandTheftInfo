@@ -1,7 +1,5 @@
 ﻿using GrandTheftInfo.Core.Contracts;
 using GrandTheftInfo.Core.Models.Cheat;
-using GrandTheftInfo.Core.Services;
-using GrandTheftInfo.Infrastructure.Data.Models;
 using GrandTheftInfo.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,15 +18,18 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var cheats = await _cheatService.AllAsync();
+            var model = cheats.GroupBy(x => x.GameId).OrderByDescending(g => g.First().GameName);
 
-            return View(cheats);
+            return View(model);
         }
 
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var model = new CheatFormModel();
-            model.Games = await GetAllGamesInfo();
+            var model = new CheatFormModel
+            {
+                Games = await GetAllGamesInfo()
+            };
 
             return View(model);
         }

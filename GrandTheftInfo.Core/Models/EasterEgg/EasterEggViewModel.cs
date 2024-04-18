@@ -1,8 +1,8 @@
 ﻿using GrandTheftInfo.Core.Contracts.ServiceModels;
 
-namespace GrandTheftInfo.Core.Models.Mission
+namespace GrandTheftInfo.Core.Models.EasterEgg
 {
-    public class MissionViewModel : IGameServiceModel
+    public class EasterEggViewModel : IGameServiceModel
     {
         public int Id { get; set; }
 
@@ -10,7 +10,9 @@ namespace GrandTheftInfo.Core.Models.Mission
 
         public string Description { get; set; } = null!;
 
-        public string PlaytroughUrl { get; set; } = null!;
+        public string? ImageUrlOne { get; set; }
+
+        public string? ImageUrlTwo { get; set; }
 
         public int GameId { get; set; }
 

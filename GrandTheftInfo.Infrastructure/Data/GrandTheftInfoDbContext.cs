@@ -15,6 +15,7 @@ namespace GrandTheftInfo.Infrastructure.Data
         public DbSet<Game> Games { get; set; } = null!;
         public DbSet<Mission> Missions { get; set; } = null!;
         public DbSet<Cheat> Cheats { get; set; } = null!;
+        public DbSet<EasterEgg> EasterEggs { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -22,6 +23,7 @@ namespace GrandTheftInfo.Infrastructure.Data
             builder.ApplyConfiguration(new GameConfiguration());
             builder.ApplyConfiguration(new MissionConfiguration());
             builder.ApplyConfiguration(new CheatConfiguration());
+            builder.ApplyConfiguration(new EasterEggConfiguration());
 
             base.OnModelCreating(builder);
         }

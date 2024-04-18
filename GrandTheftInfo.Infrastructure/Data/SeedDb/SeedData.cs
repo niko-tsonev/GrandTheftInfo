@@ -11,6 +11,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
             SeedGames();
             SeedMissions();
             SeedCheats();
+            SeedEasterEggs();
         }
 
         public Game GameOne { get; set; } = null!;
@@ -31,6 +32,11 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
         public Cheat CheatEight { get; set; } = null!;
         public Cheat CheatNine { get; set; } = null!;
         public Cheat CheatTen { get; set; } = null!;
+
+        public EasterEgg EasterEggOne { get; set; } = null!;
+        public EasterEgg EasterEggTwo { get; set; } = null!;
+        public EasterEgg EasterEggThree { get; set; } = null!;
+        public EasterEgg EasterEggFour { get; set; } = null!;
 
         public ApplicationUser GuestUser { get; set; } = null!;
 
@@ -224,6 +230,46 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Name = "Weapons 1",
                 CheatCode = "486-555-0150",
                 Platform = "Playstation",
+                GameId = 2
+            };
+        }
+
+        private void SeedEasterEggs()
+        {
+            EasterEggOne = new EasterEgg()
+            {
+                Id = 1,
+                Name = "Secret Message on Gant Bridge",
+                Description = "Located on Gant Bridge, this secret acts as something of a callback to Grand Theft Auto 3's iconic \"you weren't supposed to be able to get here you know\" Easter Egg. To find it, head over to Gant Bridge with a jetpack. Fly to the top of the first tower you pass under while crossing from the San Fierro side. Once you reach the top of the pillar, look to your right. You should see a small sign reading \"There are no Easter Eggs up here. Go away.\"",
+                ImageUrlOne = "https://oyster.ignimgs.com/mediawiki/apis.ign.com/grand-theft-auto-san-andreas/c/c7/Grand_Theft_Auto_San_Andreas_Gant_Bridge_Easter_Egg.jpg?width=1920",
+                GameId = 1
+            };
+
+            EasterEggTwo = new EasterEgg()
+            {
+                Id = 2,
+                Name = "Gant Bridge Information Board",
+                Description = "Gant Bridge actually has a second Easter Egg that's worth seeking out. It can be found listed on a facts board on the San Fierro side of the bridge, close to the diner by Katie's house. Behind the diner is a set of steps, with the board overlooking the walkway. Read the board and you'll see some generic facts about the Gant Bridge. However, the factoids will conclude with something a little less conventional, noting that it \"takes up a staggering 1.27 MB of disk space.\"",
+                ImageUrlOne = "https://oyster.ignimgs.com/mediawiki/apis.ign.com/grand-theft-auto-san-andreas/e/e1/Grand_Theft_Auto_San_Andreas_Gant_Bridge_Info_Board.jpg?width=1920",
+                GameId = 1
+            };
+
+            EasterEggThree = new EasterEgg()
+            {
+                Id = 3,
+                Name = "Face of the statue & the Hot Coffee",
+                Description = "The Statue of Happiness's face bears a striking resemblance to former U.S. Secretary of State Hillary Clinton. This resemblance, along with the cup of coffee in her right hand, may be a reference to the Hot Coffee controversy which Clinton took investigation in, also suggesting that new regulations be put on video games.",
+                ImageUrlOne = "https://static.wikia.nocookie.net/gtawiki/images/a/ab/StatueofHappiness-GTA4-statue%27sface.jpg/revision/latest/scale-to-width-down/1000?cb=20100401143154",
+                ImageUrlTwo = "https://static.wikia.nocookie.net/gtawiki/images/f/fa/StatueofHappiness-GTAIV-Statue%27sTorch.jpg/revision/latest?cb=20130813211705",
+                GameId = 2
+            };
+
+            EasterEggFour = new EasterEgg()
+            {
+                Id = 4,
+                Name = "\"No Hidden Content This Way\" sign",
+                Description = "The southern door has a sign: \"No Hidden Content This Way\". This is similar to the sign on top of the Gant Bridge in GTA San Andreas and The Hidden Sign in GTA III.",
+                ImageUrlOne = "https://static.wikia.nocookie.net/gtawiki/images/7/7b/StatueOfHappiness-GTAIV-NoHiddenContentThisWay.jpg/revision/latest?cb=20140512000301",
                 GameId = 2
             };
         }

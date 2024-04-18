@@ -1,0 +1,44 @@
+﻿@model EasterEggFormModel
+
+@{
+    ViewData["Title"] = "Add Easter Egg";
+}
+
+<div class="container">
+    <h1 class="mt-4">Add Easter Egg</h1>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post" asp-controller="EasterEgg" asp-action="Add">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Money, Weapons, Cars" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <input asp-for="Description" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrlOne"></label>
+                    <input asp-for="ImageUrlOne" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrlTwo"></label>
+                    <input asp-for="ImageUrlTwo" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="GameId"></label>
+                    <select asp-for="GameId" class="form-control">
+                        @foreach (var game in Model.Games)
+                        {
+                            <option value="@game.Id">@game.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Add" class="btn btn-outline-success" style="min-width: 140px" />
+    </form>
+</div>

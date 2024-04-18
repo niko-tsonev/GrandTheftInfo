@@ -1,0 +1,151 @@
+﻿@model IOrderedEnumerable<IGrouping<int,EasterEggViewModel>>
+
+@{
+    ViewData["Title"] = "Easter Eggs";
+}
+
+<div class="container">
+    @await Html.PartialAsync("_GameNavigationPartial", Model)
+
+
+    @foreach (var eggGroup in Model)
+    {
+        @foreach (var egg in eggGroup)
+        {
+            <div class="row egg-container" data-game-id="@eggGroup.Key">
+                <div class="card mb-5">
+                    <div class="card-content">
+                        <div class="card-images">
+                            @if (string.IsNullOrEmpty(egg.ImageUrlTwo))
+                            {
+                                <a href="@egg.ImageUrlOne" target="_blank">
+                                    <img class="card-img single-image" src="@egg.ImageUrlOne" alt="Card image cap">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@egg.ImageUrlOne" target="_blank">
+                                    <img class="card-img double-image" src="@egg.ImageUrlOne" alt="Card image cap">
+                                </a>
+                                <a href="@egg.ImageUrlTwo" target="_blank">
+                                    <img class="card-img double-image" src="@egg.ImageUrlTwo" alt="Card image cap">
+                                </a>
+                            }
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">@egg.Name</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">@egg.GameName</h6>
+                            <p class="card-text">@egg.Description</p>
+                            <span class="card-buttons">
+                                <a asp-controller="EasterEgg" asp-action="Edit" asp-route-id="@egg.Id" class="btn btn-outline-warning">Edit</a>
+                                <form method="post" asp-controller="EasterEgg" asp-action="Delete" asp-route-id="@egg.Id">
+                                    <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                </form>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+
+
+    <div class="card-button-new">
+        <a asp-controller="EasterEgg" asp-action="Add" class="btn btn-outline-success">Add New Easter Egg</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var radioButtons = document.querySelectorAll('.btn-check');
+
+        // Show all Easter eggs for the first game when the page is loaded
+        var firstGameId = '@Model.First().Key';
+        var firstGameMissions = document.querySelectorAll('.egg-container[data-game-id="' + firstGameId + '"]');
+        firstGameMissions.forEach(function (egg) {
+            egg.style.display = 'block';
+        });
+
+        radioButtons.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var gameId = this.getAttribute('data-game-id');
+                var missions = document.querySelectorAll('.egg-container');
+
+                // Hide all Easter eggs
+                missions.forEach(function (egg) {
+                    egg.style.display = 'none';
+                });
+
+                // Show Easter eggs for the selected game
+                var selectedEggs = document.querySelectorAll('.egg-container[data-game-id="' + gameId + '"]');
+                selectedEggs.forEach(function (egg) {
+                    egg.style.display = 'block';
+                });
+            });
+        });
+    });
+</script>
+
+<style>
+    .card {
+        padding: 10px;
+    }
+    
+    .card-content {
+        display: flex;
+        align-items: center; /* Optional: Align items vertically */
+    }
+
+    .card-images {
+        flex: 0 0 auto; /* This ensures the width is determined by the content */
+        margin-right: 10px; /* Optional: Adjust spacing between card-images and card-body */
+    }
+
+    .card-img {
+        width: 100%; /* Ensure images fill the available width */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .single-image {
+        max-width: 400px; /* Max width for a single image */
+    }
+
+    .double-image {
+        max-width: 200px; /* Max width for each image when there are two images */
+    }
+
+    .card-body {
+        flex: 1; /* This allows card-body to expand and take up remaining space */
+    }
+
+    .card-button-new {
+        text-align: center;
+    }
+
+    .card-button-new a {
+        font-weight: bold;
+    }
+
+    .game-nav-container {
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .egg-container {
+        display: none;
+    }
+
+    .card-buttons {
+        float: right;
+    }
+
+    .card-buttons a {
+        margin-left: 10px;
+    }
+
+    .card-buttons a, .card-buttons form {
+        display: inline-block;
+    }
+
+</style>

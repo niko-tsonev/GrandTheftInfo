@@ -1,29 +1,26 @@
 ﻿using GrandTheftInfo.Core.Contracts;
-using GrandTheftInfo.Core.Models.Game;
-using GrandTheftInfo.Core.Models.Mission;
-using GrandTheftInfo.Infrastructure.Data.Models;
+using GrandTheftInfo.Core.Models.Cheat;
+using GrandTheftInfo.Core.Models.EasterEgg;
+using GrandTheftInfo.Core.Services;
 using GrandTheftInfo.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GrandTheftInfo.Controllers
 {
-    public class MissionController : BaseController
+    public class EasterEggController : BaseController
     {
-        private readonly IMissionService _missionService;
-        private readonly IGameService _gameService;
+        private readonly IEasterEggService _easterEggService;
 
-        public MissionController(IMissionService missionService, IGameService gameService)
+        public EasterEggController(IEasterEggService easterEggService, IGameService gameService)
             : base(gameService)
         {
-            _missionService = missionService;
-            _gameService = gameService;
+            _easterEggService = easterEggService;
         }
 
-        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var missions = await _missionService.AllAsync();
-            var model = missions.GroupBy(x => x.GameId).OrderByDescending(g => g.First().GameName);
+            var easterEggs = await _easterEggService.AllAsync();
+            var model = easterEggs.GroupBy(x => x.GameId).OrderByDescending(g => g.First().GameName);
 
             return View(model);
         }
@@ -31,23 +28,25 @@ namespace GrandTheftInfo.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var model = new MissionFormModel();
-            model.Games = await GetAllGamesInfo();
+            var model = new EasterEggFormModel()
+            {
+                Games = await GetAllGamesInfo()
+            };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(MissionFormModel model)
+        public async Task<IActionResult> Add(EasterEggFormModel model)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
             try
             {
-                await _missionService.AddAsync(model);
+                await _easterEggService.AddAsync(model);
             }
             catch (Exception ex)
             {
@@ -63,38 +62,39 @@ namespace GrandTheftInfo.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var mission = await _missionService.GetFormModelByIdAsync(id);
+            var easterEgg = await _easterEggService.GetFormModelByIdAsync(id);
 
-            if (mission == null)
+            if (easterEgg == null)
             {
                 return View("CustomError", new CustomErrorViewModel()
                 {
-                    Message = "Mission not found"
+                    Message = "Easter egg not found"
                 });
             }
 
-            var editModel = new MissionFormModel()
+            var editModel = new EasterEggFormModel()
             {
-                Name = mission.Name,
-                Description = mission.Description,
-                PlaytroughUrl = mission.PlaytroughUrl,
-                GameId = mission.GameId,
-                Games = await GetAllGamesInfo(),
+                Name = easterEgg.Name,
+                Description = easterEgg.Description,
+                ImageUrlOne = easterEgg.ImageUrlOne,
+                ImageUrlTwo = easterEgg.ImageUrlTwo,
+                GameId = easterEgg.GameId,
+                Games = await GetAllGamesInfo()
             };
 
             return View(editModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, MissionFormModel model)
+        public async Task<IActionResult> Edit(int id, EasterEggFormModel model)
         {
-            var mission = await _missionService.GetFormModelByIdAsync(id);
+            var easterEgg = await _easterEggService.GetFormModelByIdAsync(id);
 
-            if (mission == null)
+            if (easterEgg == null)
             {
                 return View("CustomError", new CustomErrorViewModel()
                 {
-                    Message = "Mission not found"
+                    Message = "Easter egg not found"
                 });
             }
 
@@ -105,7 +105,7 @@ namespace GrandTheftInfo.Controllers
 
             try
             {
-                await _missionService.EditAsync(id, model);
+                await _easterEggService.EditAsync(id, model);
             }
             catch (Exception ex)
             {
@@ -121,9 +121,9 @@ namespace GrandTheftInfo.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var mission = await _missionService.GetFormModelByIdAsync(id);
+            var easterEgg = await _easterEggService.GetFormModelByIdAsync(id);
 
-            if (mission == null)
+            if (easterEgg == null)
             {
                 return View("CustomError", new CustomErrorViewModel()
                 {
@@ -133,7 +133,7 @@ namespace GrandTheftInfo.Controllers
 
             try
             {
-                await _missionService.DeleteAsync(id);
+                await _easterEggService.DeleteAsync(id);
             }
             catch (Exception ex)
             {
