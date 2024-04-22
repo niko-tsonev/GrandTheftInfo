@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GrandTheftInfo</title>
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
-    <link rel="stylesheet" href="~/css/customTheme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://bootswatch.com/5/slate/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GrandTheftInfo.styles.css" asp-append-version="true" />
 </head>
@@ -34,6 +34,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="EasterEgg" asp-action="Index">Easter Eggs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="SaveGame" asp-action="Index">Save Games</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Song" asp-action="Index">Songs</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

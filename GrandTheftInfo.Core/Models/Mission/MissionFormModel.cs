@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using GrandTheftInfo.Core.Models.ServiceModel;
 using static GrandTheftInfo.Infrastructure.Constants.DataConstants;
 
 namespace GrandTheftInfo.Core.Models.Mission
@@ -22,6 +23,6 @@ namespace GrandTheftInfo.Core.Models.Mission
         [Required]
         public int GameId { get; set; }
 
-        public IEnumerable<MissionGameServiceModel> Games { get; set; } = new List<MissionGameServiceModel>();
+        public IEnumerable<GameServiceModel> Games { get; set; } = new List<GameServiceModel>();
     }
 }

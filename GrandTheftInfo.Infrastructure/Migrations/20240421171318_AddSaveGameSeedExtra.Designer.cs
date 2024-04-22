@@ -4,6 +4,7 @@ using GrandTheftInfo.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GrandTheftInfo.Infrastructure.Migrations
 {
     [DbContext(typeof(GrandTheftInfoDbContext))]
-    partial class GrandTheftInfoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240421171318_AddSaveGameSeedExtra")]
+    partial class AddSaveGameSeedExtra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -364,7 +366,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                             Description = "CJ Max Missions ALL",
                             FileName = "test1",
                             GameId = 1,
-                            UploadDate = new DateTime(2024, 4, 22, 15, 39, 33, 779, DateTimeKind.Local).AddTicks(843)
+                            UploadDate = new DateTime(2024, 4, 21, 20, 13, 18, 484, DateTimeKind.Local).AddTicks(7794)
                         },
                         new
                         {
@@ -373,97 +375,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                             Description = "Niko Max Missions ALL",
                             FileName = "test2",
                             GameId = 2,
-                            UploadDate = new DateTime(2024, 4, 22, 15, 39, 33, 779, DateTimeKind.Local).AddTicks(845)
-                        });
-                });
-
-            modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.Song", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Radio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RadioImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VideoUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("Songs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GameId = 1,
-                            Name = "Rick James - Cold Blooded",
-                            Radio = "Bounce FM",
-                            RadioImageUrl = "https://i1.sndcdn.com/artworks-000072126799-6e0z41-t500x500.jpg",
-                            VideoUrl = "https://www.youtube.com/watch?v=Vm4jJQFXWp4&ab_channel=Micahisgod"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GameId = 1,
-                            Name = "Ohio Players - Love Rollercoaster",
-                            Radio = "Bounce FM",
-                            RadioImageUrl = "https://i1.sndcdn.com/artworks-000072126799-6e0z41-t500x500.jpg",
-                            VideoUrl = "https://www.youtube.com/watch?v=Gm8lcoPZtBY&ab_channel=drewsmusical"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameId = 2,
-                            Name = "Mobb Deep - Dirty New Yorker",
-                            Radio = "The Beat 102.7",
-                            RadioImageUrl = "https://i.ibb.co/sjXcxBw/The-Beat-102-7-29.png",
-                            VideoUrl = "https://www.youtube.com/watch?v=o1kO1JM1T6A&ab_channel=VevoMusicGroup"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GameId = 2,
-                            Name = "Nas - War Is Necessary",
-                            Radio = "The Beat 102.7",
-                            RadioImageUrl = "https://i.ibb.co/sjXcxBw/The-Beat-102-7-29.png",
-                            VideoUrl = "https://www.youtube.com/watch?v=PIwb70xCqaQ&ab_channel=RapIsTheRealShit"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            GameId = 1,
-                            Name = "Cypress Hill - How I Could Just Kill a Man",
-                            Radio = "Radio Los Santos",
-                            RadioImageUrl = "https://i.scdn.co/image/ab67706c0000da84cb4d487c981320e512939ee3",
-                            VideoUrl = "https://www.youtube.com/watch?v=Yg-RIOATCbU&ab_channel=CypressHillVEVO"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            GameId = 2,
-                            Name = "Aphex Twin - Z Twig",
-                            Radio = "Radio Los Santos",
-                            RadioImageUrl = "https://i.ibb.co/9c7V6s1/The-Journey.png",
-                            VideoUrl = "https://www.youtube.com/watch?v=j2i8eb5b84A&ab_channel=capcamarat715wa"
+                            UploadDate = new DateTime(2024, 4, 21, 20, 13, 18, 484, DateTimeKind.Local).AddTicks(7796)
                         });
                 });
 
@@ -711,47 +623,47 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4c0d567a-f038-4db9-83c3-93f0bc13b551",
+                            Id = "b716d45e-9ce1-4c6f-941c-179c769c398c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fcca2f71-696a-4615-bc09-c1e006dd537d",
+                            ConcurrencyStamp = "368cb798-be1e-4894-87a3-707e45374207",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIa7ifP0x8YFCqqO+jwVGNy3PCovL7yM2e7Rq0rfLFA0FOr9YCysPJ2OEDBc3tu4cA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDI/ZptQiaDCPCYpP77m3jR3GF24s/L0Ug2KXhYHl0euDOL6WH8AByjSzB27T+gz2g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b893d948-aab4-4709-b9cc-cfed8228e58b",
+                            SecurityStamp = "36b6b4d1-73cd-48d1-af36-444aef95ceca",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com",
-                            CreatedOn = new DateTime(2024, 4, 22, 15, 39, 33, 767, DateTimeKind.Local).AddTicks(4868),
+                            CreatedOn = new DateTime(2024, 4, 21, 20, 13, 18, 473, DateTimeKind.Local).AddTicks(3022),
                             FirstName = "Guest",
                             IsDeleted = false,
                             LastName = "Guestov",
                             MiddleName = "Guestov",
-                            ModifiedOn = new DateTime(2024, 4, 22, 15, 39, 33, 767, DateTimeKind.Local).AddTicks(4903)
+                            ModifiedOn = new DateTime(2024, 4, 21, 20, 13, 18, 473, DateTimeKind.Local).AddTicks(3055)
                         },
                         new
                         {
-                            Id = "11365df0-d857-4abc-8126-f6d89169c591",
+                            Id = "c830173a-5a63-4252-afdb-c362be52c30c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1d262554-c9c0-4526-b9ef-c92acd9f2891",
+                            ConcurrencyStamp = "8f9d5be0-3590-4954-9025-9543dbedcd4a",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECHwZcu4hm9OPQ8PnVaZaKEZTv6KzeIAJadPYaIzMriTdS+x3NktDQqW1L6M5ffn4A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB2r3YDChnL7imyowrbtxUtxRj870ZwX1z12LwAltlcdzV7cb44bDAnjBrel6SBdkw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4010d73c-9162-43a7-bdda-b3196925e7c8",
+                            SecurityStamp = "0d97891d-cee7-4746-a44d-7c688b31bd47",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com",
-                            CreatedOn = new DateTime(2024, 4, 22, 15, 39, 33, 768, DateTimeKind.Local).AddTicks(4628),
+                            CreatedOn = new DateTime(2024, 4, 21, 20, 13, 18, 474, DateTimeKind.Local).AddTicks(2673),
                             FirstName = "Great",
                             IsDeleted = false,
                             LastName = "Admin",
                             MiddleName = "Adminov",
-                            ModifiedOn = new DateTime(2024, 4, 22, 15, 39, 33, 768, DateTimeKind.Local).AddTicks(4630)
+                            ModifiedOn = new DateTime(2024, 4, 21, 20, 13, 18, 474, DateTimeKind.Local).AddTicks(2675)
                         });
                 });
 
@@ -789,17 +701,6 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.SaveGame", b =>
-                {
-                    b.HasOne("GrandTheftInfo.Infrastructure.Data.Models.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-                });
-
-            modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.Song", b =>
                 {
                     b.HasOne("GrandTheftInfo.Infrastructure.Data.Models.Game", "Game")
                         .WithMany()

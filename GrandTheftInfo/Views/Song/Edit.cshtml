@@ -1,0 +1,45 @@
+﻿@model SongFormModel
+
+@{
+    ViewData["Title"] = "Edit Song";
+}
+
+<div class="container">
+    <h1 class="mt-4">Edit Song</h1>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post" asp-controller="Song" asp-action="Edit">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Song" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="VideoUrl"></label>
+                    <input asp-for="VideoUrl" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Radio"></label>
+                    <input asp-for="Radio" value="@Model.Radio" type="text" class="form-control" hidden />
+                    <input value="@Model.Radio" type="text" class="form-control" disabled />
+                </div>
+                <div class="form-group" hidden>
+                    <label asp-for="RadioImageUrl"></label>
+                    <input asp-for="RadioImageUrl" value="@Model.RadioImageUrl" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="GameId"></label>
+                    <select asp-for="GameId" class="form-control">
+                        @foreach (var game in Model.Games)
+                        {
+                            <option value="@game.Id">@game.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Edit" class="btn btn-outline-success" style="min-width: 140px" />
+    </form>
+</div>

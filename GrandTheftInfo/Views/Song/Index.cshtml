@@ -1,0 +1,121 @@
+﻿@model IOrderedEnumerable<IGrouping<int, SongViewModel>>
+
+@{
+    ViewData["Title"] = "Songs";
+}
+
+<div class="container">
+    @await Html.PartialAsync("_GameNavigationPartial", Model)
+
+    @foreach (var gameGroup in Model)
+    {
+        <div class="game-container" data-game-id="@gameGroup.Key">
+            @foreach (var radioGroup in gameGroup.GroupBy(x => x.Radio))
+            {
+                <div class="radio-card mb-4" data-radio="@radioGroup.Key">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">
+                                <img src="@radioGroup.First().RadioImageUrl" alt="Radio Image" style="max-width: 75px;"> @radioGroup.Key
+                            </h5>
+                            <div class="row p-4">
+                                @foreach (var song in radioGroup)
+                                {
+                                    <div class="col-md-3 mb-5">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <iframe src="@song.VideoUrl" frameborder="0" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="info">
+                                            <h4 class="mb-2">@song.Name</h4>
+                                            <h6 class="text-muted">@song.GameName</h6>
+                                            <h4 class="text-muted">@song.Radio</h4>
+                                        </div>
+                                        <span class="card-buttons">
+                                            <a asp-controller="Song" asp-action="Edit" asp-route-id="@song.Id" class="btn btn-outline-warning">Edit</a>
+                                            <form method="post" asp-controller="Song" asp-action="Delete" asp-route-id="@song.Id">
+                                                <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                            </form>
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="card-button-new">
+                                <a asp-controller="Song" asp-action="Add" asp-route-radioName="@radioGroup.Key" class="btn btn-outline-success">Add New Song</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var radioButtons = document.querySelectorAll('.btn-check');
+
+        // Show song cards for the first game
+        var firstGameId = '@Model.First().Key';
+        var firstGameContainer = document.querySelector('.game-container[data-game-id="' + firstGameId + '"]');
+        firstGameContainer.style.display = 'block';
+
+        radioButtons.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var gameId = this.getAttribute('data-game-id');
+                var gameContainers = document.querySelectorAll('.game-container');
+
+                // Hide all game containers
+                gameContainers.forEach(function (container) {
+                    container.style.display = 'none';
+                });
+
+                // Show game container for the selected game
+                var selectedGameContainer = document.querySelector('.game-container[data-game-id="' + gameId + '"]');
+                selectedGameContainer.style.display = 'block';
+            });
+        });
+    });
+</script>
+
+<style>
+    .game-nav-container {
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .game-container {
+        display: none;
+    }
+
+    .card-button-new {
+        text-align: center;
+    }
+
+    .card-button-new a {
+        font-weight: bold;
+    }
+
+    .card-title {
+        text-align: center;
+    }
+
+    .media iframe {
+        width: 100%;
+        height: 200px;
+    }
+
+    .info {
+        padding: 10px;
+    }
+
+    .card-buttons form {
+        margin-left: 10px;
+    }
+
+    .card-buttons a, .card-buttons form {
+        display: inline-block;
+    }
+</style>

@@ -1,6 +1,6 @@
-﻿namespace GrandTheftInfo.Core.Models.Mission
+﻿namespace GrandTheftInfo.Core.Models.ServiceModel
 {
-    public class MissionGameServiceModel
+    public class GameServiceModel
     {
         public int Id { get; set; }
 

@@ -1,0 +1,34 @@
+﻿@model SaveGameEditModel
+
+@{
+    ViewData["Title"] = "Edit Save";
+}
+
+<div class="container">
+    <h1 class="mt-4">Edit Save</h1>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post" asp-controller="SaveGame" asp-action="Edit" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" value="@Model.Description" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label asp-for="GameId"></label>
+            <select asp-for="GameId" class="form-control">
+                @foreach (var game in Model.Games)
+                {
+                    <option value="@game.Id">@game.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label asp-for="FileName"></label>
+                <input asp-for="FileName" type="text" value="@Model.FileName" class="form-control" disabled>
+            </div>
+        </div>
+        <input type="submit" value="Edit" class="btn btn-outline-success" style="min-width: 140px" />
+    </form>
+</div>        

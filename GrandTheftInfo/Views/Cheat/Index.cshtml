@@ -9,10 +9,7 @@
 
     @foreach (var gameGroup in Model)
     {
-        <div class="game-container" data-game-id="@gameGroup.Key" @* @if (gameGroup.First().GameId != Model.First().GameId)
-        {
-            <text>style="display: none;"</text>
-        } *@>
+        <div class="game-container" data-game-id="@gameGroup.Key">
             @foreach (var platformGroup in gameGroup.GroupBy(x => x.Platform))
             {
                         <div class="cheat-card" data-platform="@platformGroup.Key">

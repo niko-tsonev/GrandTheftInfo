@@ -12,6 +12,8 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
             SeedMissions();
             SeedCheats();
             SeedEasterEggs();
+            SeedSaveGames();
+            SeedSongs();
         }
 
         public Game GameOne { get; set; } = null!;
@@ -37,6 +39,16 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
         public EasterEgg EasterEggTwo { get; set; } = null!;
         public EasterEgg EasterEggThree { get; set; } = null!;
         public EasterEgg EasterEggFour { get; set; } = null!;
+
+        public SaveGame SaveGameOne { get; set; } = null!;
+        public SaveGame SaveGameTwo { get; set; } = null!;
+
+        public Song SongOne { get; set; } = null!;
+        public Song SongTwo { get; set; } = null!;
+        public Song SongThree { get; set; } = null!;
+        public Song SongFour { get; set; } = null!;
+        public Song SongFive { get; set; } = null!;
+        public Song SongSix { get; set; } = null!;
 
         public ApplicationUser GuestUser { get; set; } = null!;
 
@@ -270,6 +282,92 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Name = "\"No Hidden Content This Way\" sign",
                 Description = "The southern door has a sign: \"No Hidden Content This Way\". This is similar to the sign on top of the Gant Bridge in GTA San Andreas and The Hidden Sign in GTA III.",
                 ImageUrlOne = "https://static.wikia.nocookie.net/gtawiki/images/7/7b/StatueOfHappiness-GTAIV-NoHiddenContentThisWay.jpg/revision/latest?cb=20140512000301",
+                GameId = 2
+            };
+        }
+
+        private void SeedSaveGames()
+        {
+            SaveGameOne = new SaveGame()
+            {
+                Id = 1,
+                FileName = "test1",
+                Description = "CJ Max Missions ALL",
+                UploadDate = DateTime.Now,
+                BlobUri = "https://grandtheftinfo.blob.core.windows.net/blobgrandtheftinfo/test1.rar",
+                GameId = 1,
+            };
+
+            SaveGameTwo = new SaveGame()
+            {
+                Id = 2,
+                FileName = "test2",
+                Description = "Niko Max Missions ALL",
+                UploadDate = DateTime.Now,
+                BlobUri = "https://grandtheftinfo.blob.core.windows.net/blobgrandtheftinfo/test2.rar",
+                GameId = 2,
+            };
+        }
+
+        private void SeedSongs()
+        {
+            SongOne = new Song()
+            {
+                Id = 1,
+                Name = "Rick James - Cold Blooded",
+                VideoUrl = "https://www.youtube.com/watch?v=Vm4jJQFXWp4&ab_channel=Micahisgod",
+                Radio = "Bounce FM",
+                RadioImageUrl = "https://i1.sndcdn.com/artworks-000072126799-6e0z41-t500x500.jpg",
+                GameId = 1
+            };
+
+            SongTwo = new Song()
+            {
+                Id = 2,
+                Name = "Ohio Players - Love Rollercoaster",
+                VideoUrl = "https://www.youtube.com/watch?v=Gm8lcoPZtBY&ab_channel=drewsmusical",
+                Radio = "Bounce FM",
+                RadioImageUrl = "https://i1.sndcdn.com/artworks-000072126799-6e0z41-t500x500.jpg",
+                GameId = 1
+            };
+
+            SongThree = new Song()
+            {
+                Id = 3,
+                Name = "Mobb Deep - Dirty New Yorker",
+                VideoUrl = "https://www.youtube.com/watch?v=o1kO1JM1T6A&ab_channel=VevoMusicGroup",
+                Radio = "The Beat 102.7",
+                RadioImageUrl = "https://i.ibb.co/sjXcxBw/The-Beat-102-7-29.png",
+                GameId = 2
+            };
+
+            SongFour = new Song()
+            {
+                Id = 4,
+                Name = "Nas - War Is Necessary",
+                VideoUrl = "https://www.youtube.com/watch?v=PIwb70xCqaQ&ab_channel=RapIsTheRealShit",
+                Radio = "The Beat 102.7",
+                RadioImageUrl = "https://i.ibb.co/sjXcxBw/The-Beat-102-7-29.png",
+                GameId = 2
+            };
+
+            SongFive = new Song()
+            {
+                Id = 5,
+                Name = "Cypress Hill - How I Could Just Kill a Man",
+                VideoUrl = "https://www.youtube.com/watch?v=Yg-RIOATCbU&ab_channel=CypressHillVEVO",
+                Radio = "Radio Los Santos",
+                RadioImageUrl = "https://i.scdn.co/image/ab67706c0000da84cb4d487c981320e512939ee3",
+                GameId = 1
+            };
+
+            SongSix = new Song()
+            {
+                Id = 6,
+                Name = "Aphex Twin - Z Twig",
+                VideoUrl = "https://www.youtube.com/watch?v=j2i8eb5b84A&ab_channel=capcamarat715wa",
+                Radio = "Radio Los Santos",
+                RadioImageUrl = "https://i.ibb.co/9c7V6s1/The-Journey.png",
                 GameId = 2
             };
         }

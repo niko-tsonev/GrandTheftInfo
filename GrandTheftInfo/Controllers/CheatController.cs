@@ -97,7 +97,7 @@ namespace GrandTheftInfo.Controllers
 
             if (!ModelState.IsValid)
             {
-                return this.View(model);
+                return View(model);
             }
 
             try
@@ -118,9 +118,9 @@ namespace GrandTheftInfo.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var mission = await _cheatService.GetFormModelByIdAsync(id);
+            var cheat = await _cheatService.GetFormModelByIdAsync(id);
 
-            if (mission == null)
+            if (cheat == null)
             {
                 return View("CustomError", new CustomErrorViewModel()
                 {

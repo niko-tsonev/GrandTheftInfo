@@ -16,6 +16,8 @@ namespace GrandTheftInfo.Extensions
             services.AddScoped<IMissionService, MissionService>();
             services.AddScoped<ICheatService, CheatService>();
             services.AddScoped<IEasterEggService, EasterEggService>();
+            services.AddScoped<ISaveGameService, SaveGameService>();
+            services.AddScoped<ISongService, SongService>();
 
             return services;
         }

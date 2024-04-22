@@ -1,0 +1,96 @@
+﻿@model IOrderedEnumerable<IGrouping<int,SaveGameViewModel>>
+
+<div class="container">
+    @await Html.PartialAsync("_GameNavigationPartial", Model)
+
+    <div class="row">
+        @foreach (var saveGameGroup in Model)
+        {
+            @foreach (var save in saveGameGroup)
+            {
+                <div class="col-sm-6 game-save" data-game-id="@saveGameGroup.Key">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">@save.FileName</h5>
+                            <p class="card-text">@save.Description</p>
+                            <p class="card-text">@save.GameName</p>
+                            <p class="card-text">Uploaded on: @save.UploadDate.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                            <a href="@save.BlobUri" class="btn btn-primary" download>Download</a>
+                            <div class="card-buttons">
+                                <a asp-controller="SaveGame" asp-action="Edit" asp-route-id="@save.Id" class="btn btn-outline-warning">Edit</a>
+                                <form method="post" asp-controller="SaveGame" asp-action="Delete" asp-route-id="@save.Id">
+                                    <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <div class="card-button-new mt-4">
+            <a asp-controller="SaveGame" asp-action="Add" class="btn btn-outline-success">Add New Save</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var radioButtons = document.querySelectorAll('.btn-check');
+
+        // Show all missions for the first game when the page is loaded
+        var firstGameId = '@Model.First().Key';
+        var firstGameMissions = document.querySelectorAll('.game-save[data-game-id="' + firstGameId + '"]');
+        firstGameMissions.forEach(function (mission) {
+            mission.style.display = 'block';
+        });
+
+        radioButtons.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var gameId = this.getAttribute('data-game-id');
+                var missions = document.querySelectorAll('.game-save');
+
+                // Hide all missions
+                missions.forEach(function (mission) {
+                    mission.style.display = 'none';
+                });
+
+                // Show missions for the selected game
+                var selectedMissions = document.querySelectorAll('.game-save[data-game-id="' + gameId + '"]');
+                selectedMissions.forEach(function (mission) {
+                    mission.style.display = 'block';
+                });
+            });
+        });
+    });
+</script>
+
+<style>
+    .game-nav-container {
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .card-button-new {
+        text-align: center;
+    }
+
+    .card-button-new a {
+        font-weight: bold;
+    }
+
+    .card-buttons {
+        float: right;
+    }
+
+    .card-buttons a {
+        margin-left: 10px;
+    }
+
+    .card-buttons a, .card-buttons form {
+        display: inline-block;
+    }
+
+    .game-save {
+        display: none;
+    }
+</style>
