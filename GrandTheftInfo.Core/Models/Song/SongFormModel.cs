@@ -7,7 +7,8 @@ namespace GrandTheftInfo.Core.Models.Song
     public class SongFormModel
     {
         [Required]
-        [StringLength(SongNameMaxLength)]
+        [StringLength(SongNameMaxLength, MinimumLength = SongNameMinLength,
+            ErrorMessage = SongNameErrorMessage)]
         public string Name { get; set; } = null!;
 
         [Required]
@@ -15,7 +16,8 @@ namespace GrandTheftInfo.Core.Models.Song
         public string VideoUrl { get; set; } = null!;
 
         [Required]
-        [StringLength(SongRadioMaxLength)]
+        [StringLength(SongRadioMaxLength, MinimumLength = SongRadioMinLength,
+            ErrorMessage = SongRadioErrorMessage)]
         public string Radio { get; set; } = null!;
 
         [Required]

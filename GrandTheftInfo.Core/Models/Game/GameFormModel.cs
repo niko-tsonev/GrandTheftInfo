@@ -6,11 +6,13 @@ namespace GrandTheftInfo.Core.Models.Game
     public class GameFormModel
     {
         [Required]
-        [StringLength(GameNameMaxLength)]
+        [StringLength(GameNameMaxLength, MinimumLength = GameNameMinLength,
+            ErrorMessage = GameNameErrorMessage)]
         public string Name { get; set; } = null!;
 
         [Required]
-        [StringLength(GameDescriptionMaxLength)]
+        [StringLength(GameDescriptionMaxLength, MinimumLength = GameDescriptionMinLength,
+            ErrorMessage = GameDescriptionErrorMessage)]
         public string Description { get; set; } = null!;
 
         [Required]

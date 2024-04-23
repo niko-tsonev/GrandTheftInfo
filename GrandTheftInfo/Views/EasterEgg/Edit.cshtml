@@ -7,26 +7,28 @@
 <div class="container">
     <h1 class="mt-4">Edit Easter Egg</h1>
 
-    <div asp-validation-summary="All" class="text-danger"></div>
-
     <form method="post" asp-controller="EasterEgg" asp-action="Edit">
         <div class="row">
             <div class="col">
                 <div class="form-group">
                     <label asp-for="Name"></label>
                     <input asp-for="Name" value="@Model.Name" type="text" class="form-control" placeholder="Money, Weapons, Cars" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Description"></label>
                     <input asp-for="Description" value="@Model.Description" type="text" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="ImageUrlOne"></label>
                     <input asp-for="ImageUrlOne" value="@Model.ImageUrlOne" type="text" class="form-control" />
+                    <span asp-validation-for="ImageUrlOne" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="ImageUrlTwo"></label>
                     <input asp-for="ImageUrlTwo" value="@Model.ImageUrlTwo" type="text" class="form-control" />
+                    <span asp-validation-for="ImageUrlTwo" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="GameId"></label>
@@ -42,3 +44,8 @@
         <input type="submit" value="Edit" class="btn btn-outline-success" style="min-width: 140px" />
     </form>
 </div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

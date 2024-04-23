@@ -9,7 +9,8 @@ namespace GrandTheftInfo.Core.Models.SaveGame
         public string? FileName { get; set; }
 
         [Required]
-        [StringLength(SaveGameDescriptionMaxLength)]
+        [StringLength(SaveGameDescriptionMaxLength, MinimumLength = SaveGameDescriptionMinLength,
+            ErrorMessage = SaveGameDescriptionErrorMessage)]
         public string Description { get; set; } = null!;
 
         public DateTime UploadDate { get; set; }

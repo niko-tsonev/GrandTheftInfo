@@ -11,7 +11,7 @@ namespace GrandTheftInfo.Infrastructure.Data.Models
         public string FirstName { get; set; } = null!;
 
         [MaxLength(UserMiddleNameMaxLength)]
-        public string MiddleName { get; set; } = null!;
+        public string? MiddleName { get; set; }
 
         [Required]
         [MaxLength(UserLastNameMaxLength)]
