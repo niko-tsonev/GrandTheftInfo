@@ -1,6 +1,7 @@
 ﻿using GrandTheftInfo.Core.Contracts;
 using GrandTheftInfo.Core.Models.Game;
 using GrandTheftInfo.Models;
+using static GrandTheftInfo.Core.Constants.CustomErrorConstants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GrandTheftInfo.Controllers
@@ -18,6 +19,14 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var games = await _gameService.AllAsync();
+
+            if (games == null || !games.Any())
+            {
+                return View(NotFoundCustomError, new CustomErrorViewModel()
+                {
+                    Message = GamesNotFound
+                });
+            }
 
             return View(games);
         }
@@ -42,9 +51,9 @@ namespace GrandTheftInfo.Controllers
             }
             catch (Exception ex)
             {
-                return View("CustomError", new CustomErrorViewModel() 
+                return View(BadRequestCustomError, new CustomErrorViewModel()
                 {
-                    Message = ex.Message 
+                    Message = ex.Message
                 });
             }
 
@@ -58,9 +67,9 @@ namespace GrandTheftInfo.Controllers
 
             if (game == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Game not found"
+                    Message = GameNotFound
                 });
             }
 
@@ -83,9 +92,9 @@ namespace GrandTheftInfo.Controllers
 
             if (game == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Game not found"
+                    Message = GameNotFound
                 });
             }
 
@@ -100,7 +109,7 @@ namespace GrandTheftInfo.Controllers
             }
             catch (Exception ex)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(BadRequestCustomError, new CustomErrorViewModel()
                 {
                     Message = ex.Message
                 });
@@ -116,9 +125,9 @@ namespace GrandTheftInfo.Controllers
 
             if (game == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Game not found"
+                    Message = GameNotFound
                 });
             }
 
@@ -128,7 +137,7 @@ namespace GrandTheftInfo.Controllers
             }
             catch (Exception ex)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(BadRequestCustomError, new CustomErrorViewModel()
                 {
                     Message = ex.Message
                 });

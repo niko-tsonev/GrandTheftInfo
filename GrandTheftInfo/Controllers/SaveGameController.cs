@@ -1,5 +1,7 @@
 ﻿using GrandTheftInfo.Core.Contracts;
 using GrandTheftInfo.Core.Models.SaveGame;
+using GrandTheftInfo.Models;
+using static GrandTheftInfo.Core.Constants.CustomErrorConstants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GrandTheftInfo.Controllers
@@ -18,6 +20,15 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var allFiles = await _saveGameService.GetFilesAsync();
+
+            if (allFiles == null || !allFiles.Any())
+            {
+                return View(NotFoundCustomError, new CustomErrorViewModel()
+                {
+                    Message = SaveGamesNotFound
+                });
+            }
+
             var model = allFiles.GroupBy(x => x.GameId).OrderByDescending(g => g.First().GameName);
 
             return View(model);
@@ -43,7 +54,17 @@ namespace GrandTheftInfo.Controllers
                 return View(model);
             }
 
-            await _saveGameService.UploadFileAsync(model);
+            try
+            {
+                await _saveGameService.UploadFileAsync(model);
+            }
+            catch (Exception ex)
+            {
+                return View(BadRequestCustomError, new CustomErrorViewModel()
+                {
+                    Message = ex.Message
+                });
+            }
 
             return RedirectToAction(nameof(Index));
         }
@@ -55,7 +76,10 @@ namespace GrandTheftInfo.Controllers
 
             if (saveGame == null)
             {
-                return NotFound();
+                return View(NotFoundCustomError, new CustomErrorViewModel()
+                {
+                    Message = SaveGameNotFound
+                });
             }
 
             var viewModel = new SaveGameEditModel()
@@ -74,16 +98,20 @@ namespace GrandTheftInfo.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Add", model);
+                model.Games = await GetAllGamesInfo();
+                return View(model);
             }
 
             try
             {
                 await _saveGameService.EditAsync(id, model);
             }
-            catch (ArgumentException)
+            catch (Exception ex)
             {
-                return NotFound();
+                return View(BadRequestCustomError, new CustomErrorViewModel()
+                {
+                    Message = ex.Message
+                });
             }
 
             return RedirectToAction(nameof(Index));
@@ -96,10 +124,23 @@ namespace GrandTheftInfo.Controllers
 
             if (!saveGame)
             {
-                return NotFound();
+                return View(NotFoundCustomError, new CustomErrorViewModel()
+                {
+                    Message = SaveGameNotFound
+                });
             }
 
-            await _saveGameService.DeleteAsync(id);
+            try
+            {
+                await _saveGameService.DeleteAsync(id);
+            }
+            catch (Exception ex)
+            {
+                return View(BadRequestCustomError, new CustomErrorViewModel()
+                {
+                    Message = ex.Message
+                });
+            }
 
             return RedirectToAction(nameof(Index));
         }

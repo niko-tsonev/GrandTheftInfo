@@ -1,8 +1,7 @@
 ﻿using GrandTheftInfo.Core.Contracts;
 using GrandTheftInfo.Core.Models.Song;
-using GrandTheftInfo.Core.Services;
-using GrandTheftInfo.Infrastructure.Data.Models;
 using GrandTheftInfo.Models;
+using static GrandTheftInfo.Core.Constants.CustomErrorConstants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GrandTheftInfo.Controllers
@@ -21,6 +20,15 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var songs = await _songService.AllAsync();
+
+            if (songs == null || !songs.Any())
+            {
+                return View(NotFoundCustomError, new CustomErrorViewModel()
+                {
+                    Message = SongsNotFound
+                });
+            }
+
             var model = songs.GroupBy(x => x.GameId).OrderByDescending(g => g.First().GameName);
 
             return View(model);
@@ -48,7 +56,18 @@ namespace GrandTheftInfo.Controllers
                 return View(model);
             }
 
-            await _songService.AddAsync(model);
+            try
+            {
+                await _songService.AddAsync(model);
+            }
+            catch (Exception ex)
+            {
+                return View(BadRequestCustomError, new CustomErrorViewModel()
+                {
+                    Message = ex.Message
+                });
+            }
+
 
             return RedirectToAction(nameof(Index));
         }
@@ -60,9 +79,9 @@ namespace GrandTheftInfo.Controllers
 
             if (song == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Song not found"
+                    Message = SongNotFound
                 });
             }
 
@@ -86,9 +105,9 @@ namespace GrandTheftInfo.Controllers
 
             if (song == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Song not found"
+                    Message = SongNotFound
                 });
             }
 
@@ -97,7 +116,17 @@ namespace GrandTheftInfo.Controllers
                 return View(model);
             }
 
-            await _songService.EditAsync(id, model);
+            try
+            {
+                await _songService.EditAsync(id, model);
+            }
+            catch (Exception ex)
+            {
+                return View(BadRequestCustomError, new CustomErrorViewModel()
+                {
+                    Message = ex.Message
+                });
+            }
 
             return RedirectToAction(nameof(Index));
         }
@@ -109,13 +138,23 @@ namespace GrandTheftInfo.Controllers
 
             if (song == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Song not found"
+                    Message = SongNotFound
                 });
             }
 
-            await _songService.DeleteAsync(id);
+            try
+            {
+                await _songService.DeleteAsync(id);
+            }
+            catch (Exception ex)
+            {
+                return View(BadRequestCustomError, new CustomErrorViewModel()
+                {
+                    Message = ex.Message
+                });
+            }
 
             return RedirectToAction(nameof(Index));
         }

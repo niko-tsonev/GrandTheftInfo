@@ -1,6 +1,7 @@
 ﻿using GrandTheftInfo.Core.Contracts;
 using GrandTheftInfo.Core.Models.Cheat;
 using GrandTheftInfo.Models;
+using static GrandTheftInfo.Core.Constants.CustomErrorConstants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GrandTheftInfo.Controllers
@@ -18,6 +19,15 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var cheats = await _cheatService.AllAsync();
+
+            if (cheats == null || !cheats.Any())
+            {
+                return View(NotFoundCustomError, new CustomErrorViewModel()
+                {
+                    Message = CheatsNotFound
+                });
+            }
+
             var model = cheats.GroupBy(x => x.GameId).OrderByDescending(g => g.First().GameName);
 
             return View(model);
@@ -49,9 +59,9 @@ namespace GrandTheftInfo.Controllers
             }
             catch (Exception ex)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(BadRequestCustomError, new CustomErrorViewModel()
                 {
-                    Message = ex.Message,
+                    Message = ex.Message
                 });
             }
 
@@ -65,9 +75,9 @@ namespace GrandTheftInfo.Controllers
 
             if (cheat == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Cheat not found"
+                    Message = CheatNotFound
                 });
             }
 
@@ -90,9 +100,9 @@ namespace GrandTheftInfo.Controllers
 
             if (cheat == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Cheat not found"
+                    Message = CheatNotFound
                 });
             }
 
@@ -107,7 +117,7 @@ namespace GrandTheftInfo.Controllers
             }
             catch (Exception ex)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(BadRequestCustomError, new CustomErrorViewModel()
                 {
                     Message = ex.Message
                 });
@@ -123,9 +133,9 @@ namespace GrandTheftInfo.Controllers
 
             if (cheat == null)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = "Mission not found"
+                    Message = CheatNotFound
                 });
             }
 
@@ -135,7 +145,7 @@ namespace GrandTheftInfo.Controllers
             }
             catch (Exception ex)
             {
-                return View("CustomError", new CustomErrorViewModel()
+                return View(BadRequestCustomError, new CustomErrorViewModel()
                 {
                     Message = ex.Message
                 });
