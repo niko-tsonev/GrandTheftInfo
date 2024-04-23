@@ -29,7 +29,10 @@
                 <span asp-validation-for="File" class="text-danger"></span>
             </div>
         </div>
-        <input type="submit" value="Add" class="btn btn-outline-success" style="min-width: 140px" />
+        <div class="form-buttons mt-3">
+            <input type="submit" value="Add" class="btn btn-outline-success" />
+            <a asp-controller="SaveGame" asp-action="Index" class="btn btn-outline-danger">Back</a>
+        </div>
     </form>
 </div>
 

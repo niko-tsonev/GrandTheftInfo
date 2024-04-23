@@ -45,3 +45,11 @@ body {
     padding-bottom: 20px;
     text-align: center;
 }
+
+.form-buttons {
+    text-align: right;
+}
+
+.form-buttons input, .form-buttons a {
+    width: 150px;
+}
