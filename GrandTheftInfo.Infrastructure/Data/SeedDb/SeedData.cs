@@ -293,7 +293,6 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Id = 1,
                 FileName = "test1",
                 Description = "CJ Max Missions ALL",
-                UploadDate = DateTime.Now,
                 BlobUri = "https://grandtheftinfo.blob.core.windows.net/blobgrandtheftinfo/test1.rar",
                 GameId = 1,
             };
@@ -303,7 +302,6 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Id = 2,
                 FileName = "test2",
                 Description = "Niko Max Missions ALL",
-                UploadDate = DateTime.Now,
                 BlobUri = "https://grandtheftinfo.blob.core.windows.net/blobgrandtheftinfo/test2.rar",
                 GameId = 2,
             };

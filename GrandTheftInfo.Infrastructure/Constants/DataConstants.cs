@@ -4,26 +4,14 @@
     {
         //Game
         public const int GameNameMaxLength = 50;
-        public const int GameNameMinLength = 5;
-
         public const int GameDescriptionMaxLength = 300;
-        public const int GameDescriptionMinLength = 10;
-
         public const int GameImageUrlMaxLength = 300;
-
-        public const string GameNameErrorMessage = "The name of the game has to be between {2} and {1} characters long";
+        public const string GameYearPublishedError = "YearPublished field is required!";
 
         //Mission
         public const int MissionNameMaxLength = 50;
-        public const int MissionNameMinLength = 5;
-
-
         public const int MissionDescriptionMaxLength = 300;
-        public const int MissionDescriptionMinLength = 10;
-
         public const int MissionPlaytroughUrlMaxLength = 300;
-
-        public const string MissionNameErrorMessage = "The name of the mission has to be between {2} and {1} characters long";
 
         //Cheat
         public const int CheatNameMaxLength = 50;
@@ -35,6 +23,17 @@
         public const int EasterEggDescriptionMaxLength = 1000;
         public const int EasterEggImageOneMaxLength = 500;
         public const int EasterEggImageTwoMaxLength = 500;
+
+        //SaveGame
+        public const int SaveGameFileNameMaxLength = 50;
+        public const int SaveGameDescriptionMaxLength = 500;
+        public const int SaveGameBlobUriMaxLength = 500;
+
+        //Song
+        public const int SongNameMaxLength = 100;
+        public const int SongVideoUrlMaxLength = 500;
+        public const int SongRadioMaxLength = 100;
+        public const int SongRadioImageUrlMaxLength = 500;
 
         //User
         public const int UserFirstNameMaxLength = 50;

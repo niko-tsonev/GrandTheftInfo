@@ -20,7 +20,6 @@ namespace GrandTheftInfo.Infrastructure.Data.Models
         [MaxLength(MissionPlaytroughUrlMaxLength)]
         public string PlaytroughUrl { get; set; } = null!;
 
-        [Required]
         public int GameId { get; set; }
 
         public Game Game { get; set; } = null!;

@@ -33,9 +33,9 @@
                             }
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">@egg.Name</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">@egg.GameName</h6>
-                            <p class="card-text">@egg.Description</p>
+                            <h4>@egg.Name</h4>
+                            <h6 class="mb-2 text-muted">@egg.GameName</h6>
+                            <p>@egg.Description</p>
                             <span class="card-buttons">
                                 <a asp-controller="EasterEgg" asp-action="Edit" asp-route-id="@egg.Id" class="btn btn-outline-warning">Edit</a>
                                 <form method="post" asp-controller="EasterEgg" asp-action="Delete" asp-route-id="@egg.Id">
@@ -62,24 +62,24 @@
 
         // Show all Easter eggs for the first game when the page is loaded
         var firstGameId = '@Model.First().Key';
-        var firstGameMissions = document.querySelectorAll('.egg-container[data-game-id="' + firstGameId + '"]');
-        firstGameMissions.forEach(function (egg) {
+        var firstEggContainer = document.querySelectorAll('.egg-container[data-game-id="' + firstGameId + '"]');
+        firstEggContainer.forEach(function (egg) {
             egg.style.display = 'block';
         });
 
         radioButtons.forEach(function (radio) {
             radio.addEventListener('change', function () {
                 var gameId = this.getAttribute('data-game-id');
-                var missions = document.querySelectorAll('.egg-container');
+                var eggs = document.querySelectorAll('.egg-container');
 
                 // Hide all Easter eggs
-                missions.forEach(function (egg) {
+                eggs.forEach(function (egg) {
                     egg.style.display = 'none';
                 });
 
                 // Show Easter eggs for the selected game
-                var selectedEggs = document.querySelectorAll('.egg-container[data-game-id="' + gameId + '"]');
-                selectedEggs.forEach(function (egg) {
+                var selectedEggContainer = document.querySelectorAll('.egg-container[data-game-id="' + gameId + '"]');
+                selectedEggContainer.forEach(function (egg) {
                     egg.style.display = 'block';
                 });
             });
@@ -88,8 +88,8 @@
 </script>
 
 <style>
-    .card {
-        padding: 10px;
+    .egg-container {
+        display: none;
     }
     
     .card-content {
@@ -115,37 +115,8 @@
         max-width: 200px; /* Max width for each image when there are two images */
     }
 
-    .card-body {
-        flex: 1; /* This allows card-body to expand and take up remaining space */
-    }
-
-    .card-button-new {
-        text-align: center;
-    }
-
-    .card-button-new a {
-        font-weight: bold;
-    }
-
-    .game-nav-container {
-        padding-bottom: 20px;
-        text-align: center;
-    }
-
-    .egg-container {
-        display: none;
-    }
-
     .card-buttons {
         float: right;
-    }
-
-    .card-buttons a {
-        margin-left: 10px;
-    }
-
-    .card-buttons a, .card-buttons form {
-        display: inline-block;
     }
 
 </style>

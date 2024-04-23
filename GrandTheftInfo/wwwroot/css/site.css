@@ -16,3 +16,32 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.card-buttons a, .card-buttons form {
+    display: inline-block;
+}
+
+.card-buttons a, .card-buttons input {
+    padding: 10px;
+    font-weight: bold;
+}
+
+
+.card-button-new {
+    text-align: center;
+}
+
+.card-button-new a {
+    font-weight: bold;
+}
+
+.iframe {
+    width: 100%;
+    height: 200px;
+}
+
+.game-nav-container {
+    padding-bottom: 20px;
+    text-align: center;
+}

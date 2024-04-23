@@ -31,8 +31,10 @@ namespace GrandTheftInfo.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var model = new MissionFormModel();
-            model.Games = await GetAllGamesInfo();
+            var model = new MissionFormModel
+            {
+                Games = await GetAllGamesInfo()
+            };
 
             return View(model);
         }
@@ -42,6 +44,7 @@ namespace GrandTheftInfo.Controllers
         {
             if (!ModelState.IsValid) 
             {
+                model.Games = await GetAllGamesInfo();
                 return View(model);
             }
 

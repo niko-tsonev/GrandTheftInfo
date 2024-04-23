@@ -80,7 +80,7 @@ namespace GrandTheftInfo.Core.Services
                 {
                     Name = e.Name,
                     Description = e.Description,
-                    ImageUrlOne = e.ImageUrlOne,
+                    ImageUrlOne =  e.ImageUrlOne,
                     ImageUrlTwo = e.ImageUrlTwo,
                     GameId = e.GameId,
                 })

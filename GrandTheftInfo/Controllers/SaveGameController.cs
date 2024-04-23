@@ -37,10 +37,10 @@ namespace GrandTheftInfo.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(SaveGameAddModel model)
         {
-            if (model.File == null || model.File.Length == 0)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("FilePath", "Please select a file.");
-                return View();
+                model.Games = await GetAllGamesInfo();
+                return View(model);
             }
 
             await _saveGameService.UploadFileAsync(model);
@@ -62,7 +62,6 @@ namespace GrandTheftInfo.Controllers
             {
                 FileName = saveGame.FileName,
                 Description = saveGame.Description,
-                UploadDate = saveGame.UploadDate,
                 GameId = saveGame.GameId,
                 Games = await GetAllGamesInfo()
             };

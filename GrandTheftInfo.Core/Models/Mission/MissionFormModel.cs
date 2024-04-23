@@ -8,19 +8,18 @@ namespace GrandTheftInfo.Core.Models.Mission
     public class MissionFormModel
     {
         [Required]
-        [StringLength(MissionNameMaxLength, MinimumLength = MissionNameMinLength,
-            ErrorMessage = MissionNameErrorMessage)]
+        [StringLength(MissionNameMaxLength)]
         public string Name { get; set; } = null!;
 
         [Required]
-        [StringLength(MissionDescriptionMaxLength, MinimumLength = MissionDescriptionMinLength)]
+        [StringLength(MissionDescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
         [Required]
         [StringLength(MissionPlaytroughUrlMaxLength)]
+        [Display(Name = "Video Playtrough URL")]
         public string PlaytroughUrl { get; set; } = null!;
 
-        [Required]
         public int GameId { get; set; }
 
         public IEnumerable<GameServiceModel> Games { get; set; } = new List<GameServiceModel>();

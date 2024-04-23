@@ -30,7 +30,6 @@ namespace GrandTheftInfo.Core.Services
                     Id = s.Id,
                     FileName = s.FileName,
                     Description = s.Description,
-                    UploadDate = s.UploadDate,
                     BlobUri = s.BlobUri,
                     GameId = s.Game.Id,
                     GameName = s.Game.Name
@@ -54,7 +53,6 @@ namespace GrandTheftInfo.Core.Services
             {
                 FileName = fileName,
                 Description = model.Description,
-                UploadDate = DateTime.UtcNow,
                 BlobUri = blobClient.Uri.AbsoluteUri,
                 GameId = model.GameId
             };
@@ -73,7 +71,6 @@ namespace GrandTheftInfo.Core.Services
                 {
                     FileName = s.FileName,
                     Description = s.Description,
-                    UploadDate = s.UploadDate,
                 })
                 .FirstOrDefaultAsync();
 
@@ -94,7 +91,6 @@ namespace GrandTheftInfo.Core.Services
             if (saveGame != null)
             {
                 saveGame.Description = model.Description;
-                saveGame.UploadDate = model.UploadDate;
                 saveGame.GameId = model.GameId;
 
                 await _repository.SaveChangesAsync();

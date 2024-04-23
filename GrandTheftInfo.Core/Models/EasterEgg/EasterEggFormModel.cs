@@ -14,10 +14,13 @@ namespace GrandTheftInfo.Core.Models.EasterEgg
         [StringLength(EasterEggDescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
+        [Required]
         [StringLength(EasterEggImageOneMaxLength)]
-        public string? ImageUrlOne { get; set; }
+        [Display(Name = "First Image URL")]
+        public string ImageUrlOne { get; set; } = null!;
 
         [StringLength(EasterEggImageTwoMaxLength)]
+        [Display(Name = "Second Image URL")]
         public string? ImageUrlTwo { get; set; }
 
         public int GameId { get; set; }

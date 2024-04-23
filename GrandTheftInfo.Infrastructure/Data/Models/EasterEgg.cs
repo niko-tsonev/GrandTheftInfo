@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static GrandTheftInfo.Infrastructure.Constants.DataConstants;
 
 namespace GrandTheftInfo.Infrastructure.Data.Models
 {
@@ -8,20 +9,19 @@ namespace GrandTheftInfo.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(EasterEggNameMaxLength)]
         public string Name { get; set; } = null!;
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(EasterEggDescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
-        [MaxLength(500)]
-        public string? ImageUrlOne { get; set; }
+        [MaxLength(EasterEggImageOneMaxLength)]
+        public string ImageUrlOne { get; set; } = null!;
 
-        [MaxLength(500)]
+        [MaxLength(EasterEggImageTwoMaxLength)]
         public string? ImageUrlTwo { get; set; }
 
-        [Required]
         public int GameId { get; set; }
 
         public Game Game { get; set; } = null!;

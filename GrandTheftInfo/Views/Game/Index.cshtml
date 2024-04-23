@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <h2 class="card-title">@game.Name</h2>
                         <img class="card-img" src="@game.ImageUrl" alt="Card image cap">
-                        <div class="card-buttons card-padding">
+                        <div class="card-buttons">
                             <a asp-controller="Mission" asp-action="Edit" asp-route-id="@game.Id" class="btn btn-outline-warning">Edit</a>
                             <form method="post" asp-controller="Game" asp-action="Delete" asp-route-id="@game.Id">
                                 <input type="submit" value="Delete" class="btn btn-outline-danger">
@@ -29,7 +29,7 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-buttons">
+                    <div class="card-button-new">
                         <a asp-controller="Game" asp-action="Add" class="btn btn-outline-success">Add New Game</a>
                     </div>
                 </div>
@@ -58,15 +58,6 @@
 
     .card-buttons {
         text-align: center;
+        padding: 10px 10px 0 0;
     }
-
-    .card-buttons a, .card-buttons form {
-        display: inline-block;
-    }
-
-    .card-buttons a, .card-buttons input {
-        padding: 10px;
-        font-weight: bold;
-    }
-
 </style>

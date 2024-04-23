@@ -1,6 +1,7 @@
 ﻿using GrandTheftInfo.Core.Models.ServiceModel;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using static GrandTheftInfo.Infrastructure.Constants.DataConstants;
 
 namespace GrandTheftInfo.Core.Models.SaveGame
 {
@@ -8,8 +9,11 @@ namespace GrandTheftInfo.Core.Models.SaveGame
     {
         public string FileName { get; set; } = null!;
 
+        [Required]
         public IFormFile File { get; set; } = null!;
 
+        [Required]
+        [StringLength(SaveGameDescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
         public DateTime UploadDate { get; set; }

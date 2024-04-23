@@ -12,6 +12,7 @@ namespace GrandTheftInfo.Core.Models.Cheat
 
         [Required]
         [StringLength(CheatCodeMaxLength)]
+        [Display(Name = "Cheat Code")]
         public string CheatCode { get; set; } = null!;
 
         [Required]

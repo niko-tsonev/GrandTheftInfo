@@ -9,7 +9,7 @@
 
     @foreach (var gameGroup in Model)
     {
-        <div class="game-container" data-game-id="@gameGroup.Key">
+        <div class="song-container" data-game-id="@gameGroup.Key">
             @foreach (var radioGroup in gameGroup.GroupBy(x => x.Radio))
             {
                 <div class="radio-card mb-4" data-radio="@radioGroup.Key">
@@ -22,22 +22,18 @@
                                 @foreach (var song in radioGroup)
                                 {
                                     <div class="col-md-3 mb-5">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <iframe src="@song.VideoUrl" frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
-                                        <div class="info">
+                                        <iframe class="iframe" src="@song.VideoUrl" frameborder="0" allowfullscreen></iframe>
+                                        <div class="info p-3">
                                             <h4 class="mb-2">@song.Name</h4>
                                             <h6 class="text-muted">@song.GameName</h6>
                                             <h4 class="text-muted">@song.Radio</h4>
                                         </div>
-                                        <span class="card-buttons">
+                                        <div class="card-buttons">
                                             <a asp-controller="Song" asp-action="Edit" asp-route-id="@song.Id" class="btn btn-outline-warning">Edit</a>
                                             <form method="post" asp-controller="Song" asp-action="Delete" asp-route-id="@song.Id">
                                                 <input type="submit" value="Delete" class="btn btn-outline-danger">
                                             </form>
-                                        </span>
+                                        </div>
                                     </div>
                                 }
                             </div>
@@ -59,63 +55,33 @@
 
         // Show song cards for the first game
         var firstGameId = '@Model.First().Key';
-        var firstGameContainer = document.querySelector('.game-container[data-game-id="' + firstGameId + '"]');
-        firstGameContainer.style.display = 'block';
+        var firstSongContainer = document.querySelector('.song-container[data-game-id="' + firstGameId + '"]');
+        firstSongContainer.style.display = 'block';
 
         radioButtons.forEach(function (radio) {
             radio.addEventListener('change', function () {
                 var gameId = this.getAttribute('data-game-id');
-                var gameContainers = document.querySelectorAll('.game-container');
+                var songs = document.querySelectorAll('.song-container');
 
                 // Hide all game containers
-                gameContainers.forEach(function (container) {
-                    container.style.display = 'none';
+                songs.forEach(function (song) {
+                    song.style.display = 'none';
                 });
 
                 // Show game container for the selected game
-                var selectedGameContainer = document.querySelector('.game-container[data-game-id="' + gameId + '"]');
-                selectedGameContainer.style.display = 'block';
+                var selectedSongContainer = document.querySelector('.song-container[data-game-id="' + gameId + '"]');
+                selectedSongContainer.style.display = 'block';
             });
         });
     });
 </script>
 
 <style>
-    .game-nav-container {
-        padding-bottom: 20px;
-        text-align: center;
-    }
-
-    .game-container {
+    .song-container {
         display: none;
     }
 
-    .card-button-new {
+    .card-title, .info, .card-buttons {
         text-align: center;
-    }
-
-    .card-button-new a {
-        font-weight: bold;
-    }
-
-    .card-title {
-        text-align: center;
-    }
-
-    .media iframe {
-        width: 100%;
-        height: 200px;
-    }
-
-    .info {
-        padding: 10px;
-    }
-
-    .card-buttons form {
-        margin-left: 10px;
-    }
-
-    .card-buttons a, .card-buttons form {
-        display: inline-block;
     }
 </style>

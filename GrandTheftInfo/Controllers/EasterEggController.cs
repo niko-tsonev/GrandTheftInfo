@@ -41,6 +41,7 @@ namespace GrandTheftInfo.Controllers
         {
             if (!ModelState.IsValid)
             {
+                model.Games = await GetAllGamesInfo();
                 return View(model);
             }
 
