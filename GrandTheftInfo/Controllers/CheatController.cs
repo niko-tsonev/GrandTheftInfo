@@ -19,12 +19,13 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var cheats = await _cheatService.AllAsync();
+            var games = await GetAllGamesInfo();
 
-            if (cheats == null || !cheats.Any())
+            if (games == null || !games.Any())
             {
                 return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = CheatsNotFound
+                    Message = GamesNotFound
                 });
             }
 
@@ -34,10 +35,11 @@ namespace GrandTheftInfo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add(int gameId)
         {
             var model = new CheatFormModel
             {
+                GameId = gameId,
                 Games = await GetAllGamesInfo()
             };
 

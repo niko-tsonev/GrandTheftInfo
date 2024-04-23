@@ -20,14 +20,6 @@ namespace GrandTheftInfo.Controllers
         {
             var games = await _gameService.AllAsync();
 
-            if (games == null || !games.Any())
-            {
-                return View(NotFoundCustomError, new CustomErrorViewModel()
-                {
-                    Message = GamesNotFound
-                });
-            }
-
             return View(games);
         }
 

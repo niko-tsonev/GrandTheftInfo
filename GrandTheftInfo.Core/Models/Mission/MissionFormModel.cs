@@ -7,6 +7,8 @@ namespace GrandTheftInfo.Core.Models.Mission
 {
     public class MissionFormModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(MissionNameMaxLength, MinimumLength = MissionNameMinLength,
             ErrorMessage = MissionNameErrorMessage)]

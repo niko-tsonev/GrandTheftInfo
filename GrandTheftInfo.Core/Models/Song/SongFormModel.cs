@@ -6,6 +6,8 @@ namespace GrandTheftInfo.Core.Models.Song
 {
     public class SongFormModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(SongNameMaxLength, MinimumLength = SongNameMinLength,
             ErrorMessage = SongNameErrorMessage)]

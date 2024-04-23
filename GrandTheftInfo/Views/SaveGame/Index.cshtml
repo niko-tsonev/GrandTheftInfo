@@ -1,20 +1,28 @@
 ﻿@model IOrderedEnumerable<IGrouping<int,SaveGameViewModel>>
 
+@{
+    ViewData["Title"] = "Save Games";
+    var savesCount = Model.Count();
+    var firstItem = Model.Any() ? Model.First().Key : 0;
+}
+
 <div class="container">
-    @await Html.PartialAsync("_GameNavigationPartial", Model)
+    @if (savesCount > 0)
+    {
+        @await Html.PartialAsync("_GameNavigationPartial", Model)
+    }
 
     <div class="row">
         @foreach (var saveGameGroup in Model)
         {
             @foreach (var save in saveGameGroup)
             {
-                <div class="col-sm-6 save-container" data-game-id="@saveGameGroup.Key">
+                <div class="col-sm-3 save-container" data-game-id="@saveGameGroup.Key">
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="card-title">@save.FileName</h5>
                             <p class="card-text">@save.Description</p>
                             <p class="card-text">@save.GameName</p>
-                            <p class="card-text">Uploaded on: @save.UploadDate.ToString("yyyy-MM-dd HH:mm:ss")</p>
                             <a href="@save.BlobUri" class="btn btn-primary" download>Download</a>
                             <div class="card-buttons">
                                 <a asp-controller="SaveGame" asp-action="Edit" asp-route-id="@save.Id" class="btn btn-outline-warning">Edit</a>
@@ -27,8 +35,8 @@
                 </div>
             }
         }
-        <div class="card-button-new mt-4">
-            <a asp-controller="SaveGame" asp-action="Add" class="btn btn-outline-success">Add New Save</a>
+        <div class="card-button-new">
+            <a id="addSaveButton" href="@Url.Action("Add", "SaveGame")" class="btn btn-outline-success">Add New Save</a>
         </div>
     </div>
 </div>
@@ -36,13 +44,18 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var radioButtons = document.querySelectorAll('.btn-check');
+        var addSaveButton = document.getElementById('addSaveButton');
 
-        // Show all missions for the first game when the page is loaded
-        var firstGameId = '@Model.First().Key';
-        var firstSaveContainer = document.querySelectorAll('.save-container[data-game-id="' + firstGameId + '"]');
-        firstSaveContainer.forEach(function (mission) {
-            mission.style.display = 'block';
-        });
+        if(@savesCount > 0) {
+            // Show all missions for the first game when the page is loaded
+            var firstGameId = @firstItem;
+            var firstSaveContainer = document.querySelectorAll('.save-container[data-game-id="' + firstGameId + '"]');
+            firstSaveContainer.forEach(function (mission) {
+                mission.style.display = 'block';
+            });
+
+            addSaveButton.href += '?gameId=' + firstGameId;
+        }
 
         radioButtons.forEach(function (radio) {
             radio.addEventListener('change', function () {
@@ -59,6 +72,8 @@
                 selectedSaveContainer.forEach(function (save) {
                     save.style.display = 'block';
                 });
+
+                addSaveButton.href = '@Url.Action("Add", "SaveGame")' + '?gameId=' + gameId;
             });
         });
     });
@@ -72,5 +87,4 @@
     .card-buttons {
         float: right;
     }
-
 </style>

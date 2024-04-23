@@ -7,8 +7,6 @@ namespace GrandTheftInfo.Core.Models.SaveGame
 {
     public class SaveGameAddModel
     {
-        public string FileName { get; set; } = null!;
-
         [Required]
         public IFormFile File { get; set; } = null!;
 
@@ -16,8 +14,6 @@ namespace GrandTheftInfo.Core.Models.SaveGame
         [StringLength(SaveGameDescriptionMaxLength, MinimumLength = SaveGameDescriptionMinLength,
             ErrorMessage = SaveGameDescriptionErrorMessage)]
         public string Description { get; set; } = null!;
-
-        public DateTime UploadDate { get; set; }
 
         public int GameId { get; set; }
 

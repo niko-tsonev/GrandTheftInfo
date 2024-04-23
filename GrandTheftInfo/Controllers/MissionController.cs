@@ -9,25 +9,24 @@ namespace GrandTheftInfo.Controllers
     public class MissionController : BaseController
     {
         private readonly IMissionService _missionService;
-        private readonly IGameService _gameService;
 
         public MissionController(IMissionService missionService, IGameService gameService)
             : base(gameService)
         {
             _missionService = missionService;
-            _gameService = gameService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var missions = await _missionService.AllAsync();
+            var games = await GetAllGamesInfo();
 
-            if (missions == null || !missions.Any())
+            if (games == null || !games.Any())
             {
                 return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = MissionsNotFound
+                    Message = GamesNotFound
                 });
             }
 

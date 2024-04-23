@@ -62,6 +62,7 @@ namespace GrandTheftInfo.Core.Services
 
             if (easterEgg != null) 
             {
+                easterEgg.Id = model.Id;
                 easterEgg.Name = model.Name;
                 easterEgg.Description = model.Description;
                 easterEgg.ImageUrlOne = model.ImageUrlOne;

@@ -50,7 +50,7 @@ namespace GrandTheftInfo.Core.Services
 
         public async Task DeleteAsync(int id)
         {
-            await _repository.DeleteAsync<Game>(id);
+            await _repository.DeleteAsync<Mission>(id);
             await _repository.SaveChangesAsync();
         }
 
@@ -60,6 +60,7 @@ namespace GrandTheftInfo.Core.Services
 
             if (mission != null)
             {
+                mission.Id = model.Id;
                 mission.Name = model.Name;
                 mission.Description = model.Description;
                 mission.PlaytroughUrl = model.PlaytroughUrl;

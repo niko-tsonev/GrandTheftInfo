@@ -2,10 +2,15 @@
 
 @{
     ViewData["Title"] = "Cheats";
+    var cheatsCount = Model.Count();
+    var firstItem = Model.Any() ? Model.First().Key : 0;
 }
 
 <div class="container">
-@await Html.PartialAsync("_GameNavigationPartial", Model)
+    @if (cheatsCount > 0)
+    {
+        @await Html.PartialAsync("_GameNavigationPartial", Model)
+    }
 
     @foreach (var gameGroup in Model)
     {
@@ -39,18 +44,24 @@
     }
 
     <div class="card-button-new">
-        <a asp-controller="Cheat" asp-action="Add" class="btn btn-outline-success">Add New Cheat</a>
+        <a id="addCheatButton" href="@Url.Action("Add", "Cheat")" class="btn btn-outline-success">Add New Cheat</a>
     </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var radioButtons = document.querySelectorAll('.btn-check');
+        var addCheatButton = document.getElementById('addCheatButton');
 
-        // Show cheat cards for the first game
-        var firstGameId = '@Model.First().Key';
-        var firstCheatContainer = document.querySelector('.cheat-container[data-game-id="' + firstGameId + '"]');
-        firstCheatContainer.style.display = 'block';
+        if (@cheatsCount > 0) {
+            // Show cheat cards for the first game
+            var firstGameId = @firstItem;
+            var firstCheatContainer = document.querySelector('.cheat-container[data-game-id="' + firstGameId + '"]');
+            firstCheatContainer.style.display = 'block';
+
+            // Set the initial gameId for the Add New Cheat button
+            addCheatButton.href += '?gameId=' + firstGameId;
+        }
 
         radioButtons.forEach(function (radio) {
             radio.addEventListener('change', function () {
@@ -65,6 +76,9 @@
                 // Show game container for the selected game
                 var selectedCheatContainer = document.querySelector('.cheat-container[data-game-id="' + gameId + '"]');
                 selectedCheatContainer.style.display = 'block';
+
+                // Update the gameId for the Add New Cheat button
+                addCheatButton.href = '@Url.Action("Add", "Cheat")' + '?gameId=' + gameId;
             });
         });
     });

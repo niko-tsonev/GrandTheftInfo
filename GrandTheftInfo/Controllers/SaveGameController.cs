@@ -20,12 +20,13 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var allFiles = await _saveGameService.GetFilesAsync();
+            var games = await GetAllGamesInfo();
 
-            if (allFiles == null || !allFiles.Any())
+            if (games == null || !games.Any())
             {
                 return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = SaveGamesNotFound
+                    Message = GamesNotFound
                 });
             }
 
@@ -35,10 +36,11 @@ namespace GrandTheftInfo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add(int gameId)
         {
             var model = new SaveGameAddModel()
             {
+                GameId = gameId,
                 Games = await GetAllGamesInfo()
             };
 

@@ -60,6 +60,7 @@ namespace GrandTheftInfo.Core.Services
 
             if (cheat != null)
             {
+                cheat.Id = model.Id;
                 cheat.Name = model.Name;
                 cheat.CheatCode = model.CheatCode;
                 cheat.Platform = model.Platform;

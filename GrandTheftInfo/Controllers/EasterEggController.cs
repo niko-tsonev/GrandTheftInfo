@@ -19,12 +19,13 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var easterEggs = await _easterEggService.AllAsync();
+            var games = await GetAllGamesInfo();
 
-            if (easterEggs == null || !easterEggs.Any())
+            if (games == null || !games.Any())
             {
                 return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = EasterEggsNotFound
+                    Message = GamesNotFound
                 });
             }
 
@@ -34,10 +35,11 @@ namespace GrandTheftInfo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add(int gameId)
         {
             var model = new EasterEggFormModel()
             {
+                GameId = gameId,
                 Games = await GetAllGamesInfo()
             };
 

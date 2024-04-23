@@ -90,6 +90,7 @@ namespace GrandTheftInfo.Core.Services
 
             if (saveGame != null)
             {
+                saveGame.Id = model.Id;
                 saveGame.Description = model.Description;
                 saveGame.GameId = model.GameId;
 

@@ -63,6 +63,7 @@ namespace GrandTheftInfo.Core.Services
 
             if (song != null)
             {
+                song.Id = model.Id;
                 song.Name = model.Name;
                 song.Radio = model.Radio;
                 song.RadioImageUrl = model.RadioImageUrl;

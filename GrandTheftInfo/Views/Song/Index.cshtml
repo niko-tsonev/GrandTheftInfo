@@ -2,10 +2,15 @@
 
 @{
     ViewData["Title"] = "Songs";
+    var songsCount = Model.Count();
+    var firstItem = Model.Any() ? Model.First().Key : 0;
 }
 
 <div class="container">
-    @await Html.PartialAsync("_GameNavigationPartial", Model)
+    @if (songsCount > 0)
+    {
+        @await Html.PartialAsync("_GameNavigationPartial", Model)
+    }
 
     @foreach (var gameGroup in Model)
     {
@@ -47,16 +52,24 @@
             }
         </div>
     }
+    <div class="card-button-new">
+        <a id="addSongButton" href="@Url.Action("AddSongWithRadio", "Song")" class="btn btn-outline-success">Add New Song with Radio</a>
+    </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var radioButtons = document.querySelectorAll('.btn-check');
+        var addSongButton = document.getElementById('addSongButton');
 
-        // Show song cards for the first game
-        var firstGameId = '@Model.First().Key';
-        var firstSongContainer = document.querySelector('.song-container[data-game-id="' + firstGameId + '"]');
-        firstSongContainer.style.display = 'block';
+        if (@songsCount > 0) {
+            // Show song cards for the first game
+            var firstGameId = @firstItem;
+            var firstSongContainer = document.querySelector('.song-container[data-game-id="' + firstGameId + '"]');
+            firstSongContainer.style.display = 'block';
+
+            addSongButton.href += '?gameId=' + firstGameId;
+        }
 
         radioButtons.forEach(function (radio) {
             radio.addEventListener('change', function () {
@@ -71,6 +84,8 @@
                 // Show game container for the selected game
                 var selectedSongContainer = document.querySelector('.song-container[data-game-id="' + gameId + '"]');
                 selectedSongContainer.style.display = 'block';
+
+                addSongButton.href = '@Url.Action("Add", "Song")' + '?gameId=' + gameId;
             });
         });
     });

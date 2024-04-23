@@ -22,12 +22,12 @@ namespace GrandTheftInfo.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new GameConfiguration());
-            builder.ApplyConfiguration(new MissionConfiguration());
-            builder.ApplyConfiguration(new CheatConfiguration());
-            builder.ApplyConfiguration(new EasterEggConfiguration());
-            builder.ApplyConfiguration(new SaveGameConfiguration());
-            builder.ApplyConfiguration(new SongConfiguration());
+            //builder.ApplyConfiguration(new GameConfiguration());
+            //builder.ApplyConfiguration(new MissionConfiguration());
+            //builder.ApplyConfiguration(new CheatConfiguration());
+            //builder.ApplyConfiguration(new EasterEggConfiguration());
+            //builder.ApplyConfiguration(new SaveGameConfiguration());
+            //builder.ApplyConfiguration(new SongConfiguration());
 
             base.OnModelCreating(builder);
         }

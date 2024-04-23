@@ -2,11 +2,15 @@
 
 @{
     ViewData["Title"] = "Easter Eggs";
+    var easterEggsCount = Model.Count();
+    var firstItem = Model.Any() ? Model.First().Key : 0;
 }
 
 <div class="container">
-    @await Html.PartialAsync("_GameNavigationPartial", Model)
-
+    @if (easterEggsCount > 0)
+    {
+        @await Html.PartialAsync("_GameNavigationPartial", Model)
+    }
 
     @foreach (var eggGroup in Model)
     {
@@ -15,7 +19,7 @@
             <div class="row egg-container" data-game-id="@eggGroup.Key">
                 <div class="card mb-5">
                     <div class="card-content">
-                        <div class="card-images">
+                        <div class="card-images p-3">
                             @if (string.IsNullOrEmpty(egg.ImageUrlTwo))
                             {
                                 <a href="@egg.ImageUrlOne" target="_blank">
@@ -52,20 +56,25 @@
 
 
     <div class="card-button-new">
-        <a asp-controller="EasterEgg" asp-action="Add" class="btn btn-outline-success">Add New Easter Egg</a>
+        <a id="addEggButton" href="@Url.Action("Add", "EasterEgg")" class="btn btn-outline-success">Add New Easter Egg</a>
     </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var radioButtons = document.querySelectorAll('.btn-check');
+        var addEggButton = document.getElementById('addEggButton');
 
-        // Show all Easter eggs for the first game when the page is loaded
-        var firstGameId = '@Model.First().Key';
-        var firstEggContainer = document.querySelectorAll('.egg-container[data-game-id="' + firstGameId + '"]');
-        firstEggContainer.forEach(function (egg) {
-            egg.style.display = 'block';
-        });
+        if (@easterEggsCount > 0) {
+            // Show all Easter eggs for the first game when the page is loaded
+            var firstGameId = @firstItem;
+            var firstEggContainer = document.querySelectorAll('.egg-container[data-game-id="' + firstGameId + '"]');
+            firstEggContainer.forEach(function (egg) {
+                egg.style.display = 'block';
+            });
+
+            addEggButton.href += '?gameId=' + firstGameId;
+        }
 
         radioButtons.forEach(function (radio) {
             radio.addEventListener('change', function () {
@@ -82,6 +91,8 @@
                 selectedEggContainer.forEach(function (egg) {
                     egg.style.display = 'block';
                 });
+
+                addEggButton.href = '@Url.Action("Add", "EasterEgg")' + '?gameId=' + gameId;
             });
         });
     });

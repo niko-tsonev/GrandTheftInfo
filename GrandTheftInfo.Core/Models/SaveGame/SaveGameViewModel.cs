@@ -10,8 +10,6 @@ namespace GrandTheftInfo.Core.Models.SaveGame
 
         public string Description { get; set; } = null!;
 
-        public DateTime UploadDate { get; set; }
-
         public string BlobUri { get; set; } = null!;
 
         public int GameId { get; set; }

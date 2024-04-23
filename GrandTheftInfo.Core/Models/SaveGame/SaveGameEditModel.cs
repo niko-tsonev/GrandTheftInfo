@@ -6,6 +6,8 @@ namespace GrandTheftInfo.Core.Models.SaveGame
 {
     public class SaveGameEditModel
     {
+        public int Id { get; set; }
+
         public string? FileName { get; set; }
 
         [Required]

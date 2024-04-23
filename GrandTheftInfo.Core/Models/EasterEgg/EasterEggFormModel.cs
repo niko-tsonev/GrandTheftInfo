@@ -6,6 +6,8 @@ namespace GrandTheftInfo.Core.Models.EasterEgg
 {
     public class EasterEggFormModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(EasterEggNameMaxLength, MinimumLength = EasterEggNameMinLength,
             ErrorMessage = EasterEggNameErrorMessage)]

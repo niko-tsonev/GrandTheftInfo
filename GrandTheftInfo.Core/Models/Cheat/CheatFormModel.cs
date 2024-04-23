@@ -6,6 +6,8 @@ namespace GrandTheftInfo.Core.Models.Cheat
 {
     public class CheatFormModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(CheatNameMaxLength, MinimumLength = CheatNameMinLength,
             ErrorMessage = CheatNameErrorMessage)]
@@ -18,8 +20,7 @@ namespace GrandTheftInfo.Core.Models.Cheat
         public string CheatCode { get; set; } = null!;
 
         [Required]
-        [StringLength(CheatPlatformMaxLength, MinimumLength = CheatPlatformMinLength,
-            ErrorMessage = CheatPlatformErrorMessage)]
+        [StringLength(CheatPlatformMaxLength)]
         public string Platform { get; set; } = null!;
 
         public int GameId { get; set; }

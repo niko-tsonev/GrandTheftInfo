@@ -20,12 +20,13 @@ namespace GrandTheftInfo.Controllers
         public async Task<IActionResult> Index()
         {
             var songs = await _songService.AllAsync();
+            var games = await GetAllGamesInfo();
 
-            if (songs == null || !songs.Any())
+            if (games == null || !games.Any())
             {
                 return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
-                    Message = SongsNotFound
+                    Message = GamesNotFound
                 });
             }
 
@@ -35,14 +36,25 @@ namespace GrandTheftInfo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add(string radioName)
+        public async Task<IActionResult> AddSongWithRadio(int gameId)
         {
             var model = new SongFormModel()
             {
+                GameId = gameId,
                 Games = await GetAllGamesInfo(),
-                Radio = radioName,
-                RadioImageUrl = await _songService.GetRadioImageByName(radioName)
+            };
 
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add(string radioName, int gameId)
+        {
+            var model = new SongFormModel()
+            {
+                Radio = radioName,
+                RadioImageUrl = await _songService.GetRadioImageByName(radioName),
+                Games = await GetAllGamesInfo(),
             };
 
             return View(model);
