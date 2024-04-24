@@ -9,7 +9,7 @@ namespace GrandTheftInfo.Extensions
         public static async Task CreateAdminRoleAsync(this IApplicationBuilder app)
         {
             using var scope = app.ApplicationServices.CreateScope();
-            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
             if (userManager != null && roleManager != null && await roleManager.RoleExistsAsync(AdminRole) == false)

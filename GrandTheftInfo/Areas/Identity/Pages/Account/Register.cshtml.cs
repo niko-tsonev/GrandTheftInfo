@@ -13,12 +13,12 @@ namespace GrandTheftInfo.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
         public RegisterModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -32,47 +32,20 @@ namespace GrandTheftInfo.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [DataType(DataType.Text)]
-            [StringLength(40, MinimumLength = 3, ErrorMessage = "First name must be between 3 and 40 characters long.")]
-            [Display(Name = "First Name")]
-            public string FirstName { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [StringLength(40, MinimumLength = 3, ErrorMessage = "First name must be between 3 and 40 characters long.")]
-            [Display(Name = "Middle Name")]
-            public string MiddleName { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [StringLength(40, MinimumLength = 3, ErrorMessage = "First name must be between 3 and 40 characters long.")]
-            [Display(Name = "Last Name")]
-            public string LastName { get; set; }
-
-            [Display(Name = "Phone number")]
-            [DataType(DataType.PhoneNumber)]
-            [MaxLength(15)]
-            public string Phone { get; set; }
-
-            [Required]
-            [Display(Name = "User Name")]
-            public string UserName { get; set; }
-
-            [Required]
             [EmailAddress]
             [Display(Name = "E-mail")]
-            public string Email { get; set; }
+            public string Email { get; set; } = null!;
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
-            public string Password { get; set; }
+            public string Password { get; set; } = null!;
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
+            public string ConfirmPassword { get; set; } = null!;
         }
 
 
@@ -88,13 +61,7 @@ namespace GrandTheftInfo.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                user.UserName = Input.UserName;
                 user.Email = Input.Email;
-                user.FirstName = Input.FirstName;
-                user.LastName = Input.LastName;
-                user.MiddleName = Input.MiddleName;
-                user.PhoneNumber = Input.Phone;
-                user.CreatedOn = DateTime.UtcNow;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -113,16 +80,16 @@ namespace GrandTheftInfo.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private ApplicationUser CreateUser()
+        private IdentityUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<ApplicationUser>();
+                return Activator.CreateInstance<IdentityUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
+                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
