@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/GrandTheftInfo20240424121642/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsGrandTheftInfoDb_54D97FEC62",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/grandtheftinfodbserver/databases/GrandTheftInfo_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:GrandTheftInfoDb",
+      "dynamicId": null
+    }
+  }
+}
