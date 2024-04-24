@@ -2,7 +2,67 @@
     ViewData["Title"] = "Home Page";
 }
 
+<img src="https://i.redd.it/nduksi52zrs41.jpg" alt="Alternate Text" />
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">GRAND THEFT INFO</h1>
+    <div class="container">
+        <p>This is an application with essential information for the Grand Thef Auto games. New games and their items can be added or edited by users with Admin role. Regular users can only view the information and download where its available</p>
+        <p>With every new game that is added the inner navigation system, which acts like a filter, will be updated.</p>
+    </div>
 </div>
+
+<div>
+
+    <div class="page">
+        <h2><b>Game</b> page</h2>
+        <p>On this page admin users can add a GTA game with a description, image and the date it was published. Regular users can only view what games are present.</p>
+    </div>
+    <div class="page">
+        <h2><b>Mission</b> page</h2>
+        <p>Here admin users can add missions for the available games with a name, description and video url. Regular users can only watch the videos for the selected game and read the short description.</p>
+    </div>
+    <div class="page">
+        <h2><b>Cheat</b> page</h2>
+        <p>On the cheat page the admin users can add a cheat for a game with and specify for which platform the cheat is. Regular users can only view the cheats.</p>
+    </div>
+    <div class="page">
+        <h2><b>Easter Egg</b> page</h2>
+        <p>On this page the admin users can add an easter egg for a specific game when they set one or two images and a description. Regular users can only view easter eggs for a specific game.</p>
+    </div>
+    <div class="page">
+        <h2><b>Save Games</b> page</h2>
+        <p>Here admin users can upload a save game file for a specific game that regular users can download. The file storage system used is Azure Blob Storage. (PS. if files cannot be downloaded then most likely the secrets string is missing from the appsettings.json because GitHub does not permit secrets to be uploaded for security measures)</p>
+    </div>
+    <div class="page">
+        <h2><b>Songs</b> page</h2>
+        <p>On the songs page admin users can upload a song for a specific radio. The songs will be separated by radio station and a video can be uploaded for it.</p>
+    </div>
+</div>
+
+<style>
+    img {
+        border: 3px solid darkgray;
+        border-radius: 5px;
+        object-fit: cover;
+        height: 400px;
+        width: 100%;
+    }
+
+    .page {
+        padding: 10px 10px 0 0;
+    }
+
+    .page h2, .page p {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .page h2 {
+        flex: 20%;
+    }
+
+    .page p {
+        flex: 80%;
+    }
+</style>

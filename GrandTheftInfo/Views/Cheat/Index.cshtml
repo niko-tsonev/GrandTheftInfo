@@ -84,7 +84,7 @@
                 var selectedCheatContainer = document.querySelector('.cheat-container[data-game-id="' + gameId + '"]');
                 selectedCheatContainer.style.display = 'block';
 
-                if (addMissionButton) {
+                if (addCheatButton) {
                     // Update the gameId for the Add New Cheat button
                     addCheatButton.href = '@Url.Action("Add", "Cheat")' + '?gameId=' + gameId;
                 }

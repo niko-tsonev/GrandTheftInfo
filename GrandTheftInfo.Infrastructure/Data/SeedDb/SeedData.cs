@@ -350,7 +350,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
             {
                 Id = 1,
                 Name = "Rick James - Cold Blooded",
-                VideoUrl = "https://www.youtube.com/watch?v=Vm4jJQFXWp4&ab_channel=Micahisgod",
+                VideoUrl = "https://www.youtube.com/embed/Vm4jJQFXWp4",
                 Radio = "Bounce FM",
                 RadioImageUrl = "https://i1.sndcdn.com/artworks-000072126799-6e0z41-t500x500.jpg",
                 GameId = 1
@@ -360,7 +360,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
             {
                 Id = 2,
                 Name = "Ohio Players - Love Rollercoaster",
-                VideoUrl = "https://www.youtube.com/watch?v=Gm8lcoPZtBY&ab_channel=drewsmusical",
+                VideoUrl = "https://www.youtube.com/embed/Gm8lcoPZtBY",
                 Radio = "Bounce FM",
                 RadioImageUrl = "https://i1.sndcdn.com/artworks-000072126799-6e0z41-t500x500.jpg",
                 GameId = 1
@@ -370,7 +370,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
             {
                 Id = 3,
                 Name = "Mobb Deep - Dirty New Yorker",
-                VideoUrl = "https://www.youtube.com/watch?v=o1kO1JM1T6A&ab_channel=VevoMusicGroup",
+                VideoUrl = "https://www.youtube.com/embed/o1kO1JM1T6A",
                 Radio = "The Beat 102.7",
                 RadioImageUrl = "https://i.ibb.co/sjXcxBw/The-Beat-102-7-29.png",
                 GameId = 2
@@ -380,7 +380,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
             {
                 Id = 4,
                 Name = "Nas - War Is Necessary",
-                VideoUrl = "https://www.youtube.com/watch?v=PIwb70xCqaQ&ab_channel=RapIsTheRealShit",
+                VideoUrl = "https://www.youtube.com/embed/PIwb70xCqaQ",
                 Radio = "The Beat 102.7",
                 RadioImageUrl = "https://i.ibb.co/sjXcxBw/The-Beat-102-7-29.png",
                 GameId = 2
@@ -390,7 +390,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
             {
                 Id = 5,
                 Name = "The Edge - David McCallum",
-                VideoUrl = "https://www.youtube.com/embed/y05mMRJrUnE?si=w5bWjYkcXIzQdclZ",
+                VideoUrl = "https://www.youtube.com/embed/y05mMRJrUnE",
                 Radio = "Fusion FM",
                 RadioImageUrl = "https://static.wikia.nocookie.net/gtawiki/images/6/65/Fusion-FM-Logo%2C_IV.png",
                 GameId = 1
