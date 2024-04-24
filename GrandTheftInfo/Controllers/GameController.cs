@@ -71,8 +71,7 @@ namespace GrandTheftInfo.Controllers
                 Name = game.Name,
                 Description = game.Description,
                 ImageUrl = game.ImageUrl,
-                DatePublished = game.DatePublished,
-                MissionCount = game.MissionCount
+                DatePublished = game.DatePublished
             };
 
             return View(editModel);

@@ -1,4 +1,4 @@
-﻿using GrandTheftInfo.Core.Models.ServiceModel;
+﻿using GrandTheftInfo.Core.Models.Game;
 using System.ComponentModel.DataAnnotations;
 using static GrandTheftInfo.Infrastructure.Constants.DataConstants;
 
@@ -29,6 +29,6 @@ namespace GrandTheftInfo.Core.Models.EasterEgg
 
         public int GameId { get; set; }
 
-        public IEnumerable<GameServiceModel> Games { get; set; } = new List<GameServiceModel>();
+        public IEnumerable<GameViewModel> Games { get; set; } = new List<GameViewModel>();
     }
 }

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\GrandTheftInfo.Infrastructure\GrandTheftInfo.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\ServiceModel\" />
+  </ItemGroup>
+
 </Project>

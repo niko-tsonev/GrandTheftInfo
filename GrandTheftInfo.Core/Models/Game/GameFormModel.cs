@@ -25,8 +25,5 @@ namespace GrandTheftInfo.Core.Models.Game
         [Required(ErrorMessage = GameYearPublishedError)]
         [Display(Name = "Year Published")]
         public DateTime? DatePublished { get; set; }
-
-        [Required]
-        public int MissionCount { get; set; }
     }
 }

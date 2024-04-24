@@ -1,5 +1,5 @@
 ﻿using GrandTheftInfo.Core.Contracts;
-using GrandTheftInfo.Core.Models.ServiceModel;
+using GrandTheftInfo.Core.Models.Game;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +15,11 @@ namespace GrandTheftInfo.Controllers
             _gameService = gameService;
         }
 
-        protected async Task<IEnumerable<GameServiceModel>> GetAllGamesInfo()
+        protected async Task<IEnumerable<GameViewModel>> GetAllGamesInfo()
         {
             var games = await _gameService.AllAsync();
 
-            return games.Select(m => new GameServiceModel()
+            return games.Select(m => new GameViewModel()
             {
                 Id = m.Id,
                 Name = m.Name
