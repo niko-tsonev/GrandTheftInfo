@@ -12,10 +12,10 @@ namespace GrandTheftInfo.Core.Contracts
 
         public Task<SaveGameViewModel?> GetModelByIdAsync(int id);
 
-        public Task<bool> SaveGameExists(int id);
-
         public Task EditAsync(int id, SaveGameEditModel model);
 
         public Task DeleteAsync(int id);
+
+        public  Task<bool> FileExistsInCloud(string fileName);
     }
 }

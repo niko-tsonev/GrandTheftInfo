@@ -77,13 +77,6 @@ namespace GrandTheftInfo.Core.Services
             return saveGame;
         }
 
-        public async Task<bool> SaveGameExists(int id)
-        {
-            var saveGame = await _repository.GetByIdAsync<SaveGame>(id);
-
-            return saveGame != null;
-        }
-
         public async Task EditAsync(int id, SaveGameEditModel model)
         {
             var saveGame = await _repository.GetByIdAsync<SaveGame>(id);
@@ -109,6 +102,13 @@ namespace GrandTheftInfo.Core.Services
 
                 await _repository.SaveChangesAsync();
             }
+        }
+
+        public async Task<bool> FileExistsInCloud(string fileName)
+        {
+            BlobClient blobClient = _client.GetBlobClient(fileName);
+
+            return await blobClient.ExistsAsync();
         }
     }
 }
