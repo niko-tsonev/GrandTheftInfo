@@ -1,9 +1,11 @@
 ﻿using GrandTheftInfo.Core.Contracts;
 using GrandTheftInfo.Core.Models.ServiceModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GrandTheftInfo.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         private readonly IGameService _gameService;

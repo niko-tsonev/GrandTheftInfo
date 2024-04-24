@@ -48,7 +48,7 @@ namespace GrandTheftInfo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add(string radioName, int gameId)
+        public async Task<IActionResult> Add(string radioName)
         {
             var model = new SongFormModel()
             {

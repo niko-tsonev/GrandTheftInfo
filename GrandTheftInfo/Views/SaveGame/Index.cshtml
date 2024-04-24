@@ -24,20 +24,26 @@
                             <p class="card-text">@save.Description</p>
                             <p class="card-text">@save.GameName</p>
                             <a href="@save.BlobUri" class="btn btn-primary" download>Download</a>
-                            <div class="card-buttons">
-                                <a asp-controller="SaveGame" asp-action="Edit" asp-route-id="@save.Id" class="btn btn-outline-warning">Edit</a>
-                                <form method="post" asp-controller="SaveGame" asp-action="Delete" asp-route-id="@save.Id">
-                                    <input type="submit" value="Delete" class="btn btn-outline-danger">
-                                </form>
-                            </div>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                            {
+                                <div class="card-buttons">
+                                    <a asp-controller="SaveGame" asp-action="Edit" asp-route-id="@save.Id" class="btn btn-outline-warning">Edit</a>
+                                    <form method="post" asp-controller="SaveGame" asp-action="Delete" asp-route-id="@save.Id">
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                    </form>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
             }
         }
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+        {
         <div class="card-button-new">
             <a id="addSaveButton" href="@Url.Action("Add", "SaveGame")" class="btn btn-outline-success">Add New Save</a>
         </div>
+        }
     </div>
 </div>
 
@@ -54,7 +60,9 @@
                 mission.style.display = 'block';
             });
 
-            addSaveButton.href += '?gameId=' + firstGameId;
+            if (addSaveButton) {
+                addSaveButton.href += '?gameId=' + firstGameId;
+            }
         }
 
         radioButtons.forEach(function (radio) {
@@ -72,8 +80,10 @@
                 selectedSaveContainer.forEach(function (save) {
                     save.style.display = 'block';
                 });
-
-                addSaveButton.href = '@Url.Action("Add", "SaveGame")' + '?gameId=' + gameId;
+                
+                if (addSaveButton) {
+                    addSaveButton.href = '@Url.Action("Add", "SaveGame")' + '?gameId=' + gameId;
+                }
             });
         });
     });

@@ -18,41 +18,47 @@
             {
                 foreach (var mission in gameGroup)
                 {
-                        <div class="col-sm-4 mission-container" data-game-id="@gameGroup.Key">
-                            <div class="card mb-3">
-                                <h5 class="card-header">@mission.Name</h5>
-                                <iframe class="iframe"
-                                        src="@mission.PlaytroughUrl">
-                                </iframe>
-                                <div class="card-body">
-                                    <p class="card-text">@mission.Description</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">@mission.GameName</li>
-                                </ul>
-                                <div class="card-body">
-                                    <div class="card-buttons">
-                                        <a asp-controller="Mission" asp-action="Edit" asp-route-id="@mission.Id" class="btn btn-outline-warning">Edit</a>
-                                        <form method="post" asp-controller="Mission" asp-action="Delete" asp-route-id="@mission.Id">
-                                            <input type="submit" value="Delete" class="btn btn-outline-danger">
-                                        </form>
+                                <div class="col-sm-4 mission-container" data-game-id="@gameGroup.Key">
+                                    <div class="card mb-3">
+                                        <h5 class="card-header">@mission.Name</h5>
+                                        <iframe class="iframe"
+                                                src="@mission.PlaytroughUrl">
+                                        </iframe>
+                                        <div class="card-body">
+                                            <p class="card-text">@mission.Description</p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">@mission.GameName</li>
+                                    </ul>
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                            {
+                                        <div class="card-body">
+                                            <div class="card-buttons">
+                                                <a asp-controller="Mission" asp-action="Edit" asp-route-id="@mission.Id" class="btn btn-outline-warning">Edit</a>
+                                                <form method="post" asp-controller="Mission" asp-action="Delete" asp-route-id="@mission.Id">
+                                                    <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                                </form>
+                                            </div>
+                                        </div>
+                            }
                                     </div>
                                 </div>
-                            </div>
-                        </div>
                 }
             }
         }
     </div>
-
-    <div class="card-button-new">
-        <a asp-controller="Mission" asp-action="Add" class="btn btn-outline-success">Add New Mission</a>
-    </div>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+    {
+        <div class="card-button-new">
+            <a id="addMissionButton" href="@Url.Action("Add", "Mission")" class="btn btn-outline-success">Add New Mission</a>
+        </div>
+    }
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var radioButtons = document.querySelectorAll('.btn-check');
+        var addMissionButton = document.getElementById('addMissionButton');
 
         if (@missionsCount > 0) {
             // Show all missions for the first game when the page is loaded
@@ -61,6 +67,10 @@
             firstMissionCard.forEach(function (mission) {
                 mission.style.display = 'block';
             });
+
+            if (addMissionButton) {
+                addMissionButton.href += '?gameId=' + firstGameId;
+            }
         }
 
         radioButtons.forEach(function (radio) {
@@ -78,6 +88,10 @@
                 selectedMissions.forEach(function (mission) {
                     mission.style.display = 'block';
                 });
+
+                if (addMissionButton) {
+                    addMissionButton.href = '@Url.Action("Add", "Mission")' + '?gameId=' + gameId;
+                }
             });
         });
     });

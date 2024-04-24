@@ -56,6 +56,13 @@ namespace GrandTheftInfo.Controllers
                 return View(model);
             }
 
+            if (await _saveGameService.FileExistsInCloud(model.File.FileName))
+            {
+                ViewBag.ErrorMessage = FilePresentInCloud;
+                model.Games = await GetAllGamesInfo();
+                return View(model);
+            }
+
             try
             {
                 await _saveGameService.UploadFileAsync(model);
@@ -122,13 +129,21 @@ namespace GrandTheftInfo.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var saveGame = await _saveGameService.SaveGameExists(id);
+            var saveGame = await _saveGameService.GetModelByIdAsync(id);
 
-            if (!saveGame)
+            if (saveGame == null)
             {
                 return View(NotFoundCustomError, new CustomErrorViewModel()
                 {
                     Message = SaveGameNotFound
+                });
+            }
+
+            if (!await _saveGameService.FileExistsInCloud(saveGame.FileName))
+            {
+                return View(NotFoundCustomError, new CustomErrorViewModel()
+                {
+                    Message = FileNotPresentInCloud
                 });
             }
 

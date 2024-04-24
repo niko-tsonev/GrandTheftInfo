@@ -7,7 +7,12 @@
 <div class="container">
     <h1 class="mt-4">Add Save</h1>
 
-    <form method="post" asp-controller="SaveGame" asp-action="Add" enctype="multipart/form-data">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <span class="text-danger">@ViewBag.ErrorMessage</span>
+    }
+
+    <form method="post" onsubmit="return preventDoubleSubmit(this);" asp-controller="SaveGame" asp-action="Add" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="Description"></label>
             <textarea asp-for="Description" class="form-control"></textarea>
@@ -36,6 +41,16 @@
     </form>
 </div>
 
+<script>
+    function preventDoubleSubmit(form) {
+        if (form.getAttribute('data-submitted') === 'true') {
+            return false;
+        } else {
+            form.setAttribute('data-submitted', 'true');
+            return true;
+        }
+    }
+</script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

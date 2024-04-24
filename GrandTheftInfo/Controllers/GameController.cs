@@ -3,6 +3,7 @@ using GrandTheftInfo.Core.Models.Game;
 using GrandTheftInfo.Models;
 using static GrandTheftInfo.Core.Constants.CustomErrorConstants;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GrandTheftInfo.Controllers
 {

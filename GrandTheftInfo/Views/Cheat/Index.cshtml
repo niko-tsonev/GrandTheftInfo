@@ -27,13 +27,16 @@
                                 <li class="list-group-item">
                                     <span>@cheat.Name - </span>
                                     <span>@cheat.CheatCode</span>
-                                    <span class="card-buttons m-2">
-                                        <a asp-controller="Cheat" asp-action="Edit" asp-route-id="@cheat.Id" class="btn btn-outline-warning">Edit</a>
-                                        <form method="post" asp-controller="Cheat" asp-action="Delete" asp-route-id="@cheat.Id">
-                                            <input type="submit" value="Delete" class="btn btn-outline-danger">
-                                        </form>
-                                    </span>
-                                </li>
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                                        {
+                                            <span class="card-buttons m-2">
+                                                <a asp-controller="Cheat" asp-action="Edit" asp-route-id="@cheat.Id" class="btn btn-outline-warning">Edit</a>
+                                                <form method="post" asp-controller="Cheat" asp-action="Delete" asp-route-id="@cheat.Id">
+                                                    <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                                </form>
+                                            </span>
+                                        }
+                                    </li>
                             }
                             </ul>
                         </div>
@@ -42,10 +45,12 @@
             }
             </div>
     }
-
-    <div class="card-button-new">
-        <a id="addCheatButton" href="@Url.Action("Add", "Cheat")" class="btn btn-outline-success">Add New Cheat</a>
-    </div>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+    {
+        <div class="card-button-new">
+            <a id="addCheatButton" href="@Url.Action("Add", "Cheat")" class="btn btn-outline-success">Add New Cheat</a>
+        </div>
+    }
 </div>
 
 <script>
@@ -59,8 +64,10 @@
             var firstCheatContainer = document.querySelector('.cheat-container[data-game-id="' + firstGameId + '"]');
             firstCheatContainer.style.display = 'block';
 
-            // Set the initial gameId for the Add New Cheat button
-            addCheatButton.href += '?gameId=' + firstGameId;
+            if (addCheatButton) {
+                // Set the initial gameId for the Add New Cheat button
+                addCheatButton.href += '?gameId=' + firstGameId;
+            }
         }
 
         radioButtons.forEach(function (radio) {
@@ -77,8 +84,10 @@
                 var selectedCheatContainer = document.querySelector('.cheat-container[data-game-id="' + gameId + '"]');
                 selectedCheatContainer.style.display = 'block';
 
-                // Update the gameId for the Add New Cheat button
-                addCheatButton.href = '@Url.Action("Add", "Cheat")' + '?gameId=' + gameId;
+                if (addMissionButton) {
+                    // Update the gameId for the Add New Cheat button
+                    addCheatButton.href = '@Url.Action("Add", "Cheat")' + '?gameId=' + gameId;
+                }
             });
         });
     });

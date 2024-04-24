@@ -36,10 +36,11 @@ namespace GrandTheftInfo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add(int gameId)
         {
             var model = new MissionFormModel
             {
+                GameId = gameId,
                 Games = await GetAllGamesInfo()
             };
 

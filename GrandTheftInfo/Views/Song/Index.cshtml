@@ -33,28 +33,36 @@
                                             <h6 class="text-muted">@song.GameName</h6>
                                             <h4 class="text-muted">@song.Radio</h4>
                                         </div>
-                                        <div class="card-buttons">
-                                            <a asp-controller="Song" asp-action="Edit" asp-route-id="@song.Id" class="btn btn-outline-warning">Edit</a>
-                                            <form method="post" asp-controller="Song" asp-action="Delete" asp-route-id="@song.Id">
-                                                <input type="submit" value="Delete" class="btn btn-outline-danger">
-                                            </form>
-                                        </div>
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                                        {
+                                            <div class="card-buttons">
+                                                <a asp-controller="Song" asp-action="Edit" asp-route-id="@song.Id" class="btn btn-outline-warning">Edit</a>
+                                                <form method="post" asp-controller="Song" asp-action="Delete" asp-route-id="@song.Id">
+                                                    <input type="submit" value="Delete" class="btn btn-outline-danger">
+                                                </form>
+                                            </div>
+                                        }
                                     </div>
                                 }
                             </div>
-
-                            <div class="card-button-new">
-                                <a asp-controller="Song" asp-action="Add" asp-route-radioName="@radioGroup.Key" class="btn btn-outline-success">Add New Song</a>
-                            </div>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                            {
+                                <div class="card-button-new">
+                                    <a asp-controller="Song" asp-action="Add" asp-route-radioName="@radioGroup.Key" class="btn btn-outline-success">Add New Song</a>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
             }
         </div>
     }
-    <div class="card-button-new">
-        <a id="addSongButton" href="@Url.Action("AddSongWithRadio", "Song")" class="btn btn-outline-success">Add New Song with Radio</a>
-    </div>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+    {
+        <div class="card-button-new">
+            <a id="addSongButton" href="@Url.Action("AddSongWithRadio", "Song")" class="btn btn-outline-success">Add New Song with Radio</a>
+        </div>
+    }
 </div>
 
 <script>
@@ -68,7 +76,9 @@
             var firstSongContainer = document.querySelector('.song-container[data-game-id="' + firstGameId + '"]');
             firstSongContainer.style.display = 'block';
 
-            addSongButton.href += '?gameId=' + firstGameId;
+            if (addSongButton) {
+                addSongButton.href += '?gameId=' + firstGameId;
+            }
         }
 
         radioButtons.forEach(function (radio) {
@@ -85,7 +95,9 @@
                 var selectedSongContainer = document.querySelector('.song-container[data-game-id="' + gameId + '"]');
                 selectedSongContainer.style.display = 'block';
 
-                addSongButton.href = '@Url.Action("Add", "Song")' + '?gameId=' + gameId;
+                if (addSongButton) {
+                    addSongButton.href = '@Url.Action("AddSongWithRadio", "Song")' + '?gameId=' + gameId;
+                }
             });
         });
     });
