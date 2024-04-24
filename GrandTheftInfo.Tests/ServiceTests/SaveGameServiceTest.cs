@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace GrandTheftInfo.Tests.ServiceTests
 {
-    public class SaveGameServiceTests
+    public class SaveGameServiceTest
     {
         private ISaveGameService _saveGameService;
         private IRepository _repo;

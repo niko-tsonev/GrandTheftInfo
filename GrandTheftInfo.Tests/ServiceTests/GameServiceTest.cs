@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GrandTheftInfo.Tests.ServiceTests
 {
-    public class GameServiceTests
+    public class GameServiceTest
     {
         private GrandTheftInfoDbContext applicationDbContext;
         private IGameService gameService;

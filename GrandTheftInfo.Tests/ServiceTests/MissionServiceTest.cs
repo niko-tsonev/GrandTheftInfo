@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GrandTheftInfo.Tests.ServiceTests
 {
-    public class MissionServiceTests
+    public class MissionServiceTest
     {
         private IMissionService _missionService;
         private IRepository _repo;

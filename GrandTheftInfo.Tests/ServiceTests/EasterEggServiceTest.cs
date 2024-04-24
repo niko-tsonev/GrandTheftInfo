@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GrandTheftInfo.Tests.ServiceTests
 {
-    public class EasterEggServiceTests
+    public class EasterEggServiceTest
     {
         private IEasterEggService _easterEggService;
         private IRepository _repo;

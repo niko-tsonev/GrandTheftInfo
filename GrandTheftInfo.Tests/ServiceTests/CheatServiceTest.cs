@@ -6,7 +6,7 @@ using GrandTheftInfo.Infrastructure.Data.Models;
 
 namespace GrandTheftInfo.Tests.ServiceTests
 {
-    public class CheatServiceTests
+    public class CheatServiceTest
     {
         private ICheatService _cheatService;
         private IRepository _repo;

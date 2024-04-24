@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GrandTheftInfo.Tests.ServiceTests
 {
-    public class SongServiceTests
+    public class SongServiceTest
     {
         private ISongService _songService;
         private IRepository _repo;
