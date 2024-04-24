@@ -14,6 +14,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
             {
                 data.SaveGameOne,
                 data.SaveGameTwo,
+                data.SaveGameThree,
             });
         }
     }

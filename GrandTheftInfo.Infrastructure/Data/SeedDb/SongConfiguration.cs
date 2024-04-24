@@ -16,8 +16,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 data.SongTwo,
                 data.SongThree,
                 data.SongFour,
-                data.SongFive,
-                data.SongSix,
+                data.SongFive
             });
         }
     }

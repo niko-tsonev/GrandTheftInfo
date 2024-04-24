@@ -15,7 +15,11 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 data.MissionOne,
                 data.MissionTwo,
                 data.MissionThree,
-                data.MissionFour
+                data.MissionFour,
+                data.MissionFive,
+                data.MissionSix,
+                data.MissionSeven,
+                data.MissionEight,
             });
         }
     }

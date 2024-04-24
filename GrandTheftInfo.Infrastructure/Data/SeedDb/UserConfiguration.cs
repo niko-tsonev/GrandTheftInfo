@@ -1,16 +1,16 @@
-﻿using GrandTheftInfo.Infrastructure.Data.Models;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GrandTheftInfo.Infrastructure.Data.SeedDb
 {
-    internal class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    internal class UserConfiguration : IEntityTypeConfiguration<IdentityUser>
     {
-        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+        public void Configure(EntityTypeBuilder<IdentityUser> builder)
         {
             var data = new SeedData();
 
-            builder.HasData(new ApplicationUser[] { data.GuestUser, data.AdminUser });
+            builder.HasData(new IdentityUser[] { data.GuestUser, data.AdminUser });
         }
     }
 }
