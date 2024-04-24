@@ -21,7 +21,7 @@ namespace GrandTheftInfo.Infrastructure.Data.Models
         public string ImageUrl { get; set; } = null!;
 
         [Required]
-        public DateTime? YearPublished { get; set; }
+        public DateTime? DatePublished { get; set; }
 
     }
 }

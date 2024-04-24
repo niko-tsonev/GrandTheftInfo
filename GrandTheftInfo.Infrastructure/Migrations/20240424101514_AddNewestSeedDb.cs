@@ -56,17 +56,17 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "09a8c032-fbf1-402d-b7fb-81d4f74fd137", 0, "53b644da-447d-4191-9bde-c2ed791e243d", "guest@mail.com", false, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEObSkQG11VIBfoGNEva38AqMu26+UIXrdcatm/m5JuhuvPZwdeKnBW3McL2ymWIFzA==", null, false, "fe91f48b-1978-46d8-a0c7-b636c4d8e3f4", false, "guest@mail.com" },
-                    { "c593f6fb-125c-4651-98d5-39ec62c3fe46", 0, "fe5db983-5b57-41d9-9ec0-676b4c29a4aa", "admin@mail.com", false, false, null, "ADMIN@MAIL.COM", "ADMIN@MAIL.COM", "AQAAAAEAACcQAAAAEG7MPNevcvq+bRr7qxDAdckr0aRLxCWrdI6tthfnbYaNvce0qmz5uGzJlkCgtJOqxQ==", null, false, "04e9cfea-e8c1-4c53-880d-fb840c284f67", false, "admin@mail.com" }
+                    { "0a87523a-a2a7-4743-8c5f-aff061686200", 0, "fe684972-26ff-4dc5-b2f1-30b83772a266", "guest@mail.com", false, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEHKzih2RD5K6/pCg/LWvjajctgZPUmjRjob8FJfX/8mUAy6nWCCKpD6af9+yaT+Eew==", null, false, "ce8c60e8-a409-45dc-9384-27d0b3e0bb42", false, "guest@mail.com" },
+                    { "dc07746a-9b68-44ae-b193-4cb4a65e3593", 0, "d6b785d5-0e6c-43a2-8c7c-eece6b138107", "admin@mail.com", false, false, null, "ADMIN@MAIL.COM", "ADMIN@MAIL.COM", "AQAAAAEAACcQAAAAEC73LQUoNQl2jpE5WeyvdB8QNNDmDwzaU7UgIGJ2mmUq+++sZa5Hy/0tFtPj8ODzSw==", null, false, "1f1e02c1-dd35-46e2-a6ca-8c1365178d3b", false, "admin@mail.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Games",
-                columns: new[] { "Id", "Description", "ImageUrl", "Name", "YearPublished" },
+                columns: new[] { "Id", "DatePublished", "Description", "ImageUrl", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Grand Theft Auto: San Andreas is a 2004 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the seventh title in the Grand Theft Auto series, following 2002's Grand Theft Auto: Vice City. Set within the fictional state of San Andreas, the game follows Carl \"CJ\" Johnson, who returns home after his mother's murder and finds his old gang has lost much of their territory. Over the course of the game, he attempts to re-establish the gang, clashes with corrupt authorities and powerful criminals, and gradually unravels the truth behind his mother's murder.", "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg", "GTA San Andreas", new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "Grand Theft Auto IV is a 2008 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the sixth main entry in the Grand Theft Auto series, following 2004's Grand Theft Auto: San Andreas, and the eleventh instalment overall. Set in the fictional Liberty City, based on New York City, the single-player story follows Eastern European war veteran Niko Bellic and his attempts to escape his past while under pressure from high-profile criminals. The open world design lets players freely roam Liberty City, consisting of three main islands, and the neighbouring state of ", "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg", "GTA IV", new DateTime(2008, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "Grand Theft Auto: San Andreas is a 2004 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the seventh title in the Grand Theft Auto series, following 2002's Grand Theft Auto: Vice City. Set within the fictional state of San Andreas, the game follows Carl \"CJ\" Johnson, who returns home after his mother's murder and finds his old gang has lost much of their territory. Over the course of the game, he attempts to re-establish the gang, clashes with corrupt authorities and powerful criminals, and gradually unravels the truth behind his mother's murder.", "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg", "GTA San Andreas" },
+                    { 2, new DateTime(2008, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Grand Theft Auto IV is a 2008 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the sixth main entry in the Grand Theft Auto series, following 2004's Grand Theft Auto: San Andreas, and the eleventh instalment overall. Set in the fictional Liberty City, based on New York City, the single-player story follows Eastern European war veteran Niko Bellic and his attempts to escape his past while under pressure from high-profile criminals. The open world design lets players freely roam Liberty City, consisting of three main islands, and the neighbouring state of ", "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg", "GTA IV" }
                 });
 
             migrationBuilder.InsertData(
@@ -140,12 +140,12 @@ namespace GrandTheftInfo.Infrastructure.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "09a8c032-fbf1-402d-b7fb-81d4f74fd137");
+                keyValue: "0a87523a-a2a7-4743-8c5f-aff061686200");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "c593f6fb-125c-4651-98d5-39ec62c3fe46");
+                keyValue: "dc07746a-9b68-44ae-b193-4cb4a65e3593");
 
             migrationBuilder.DeleteData(
                 table: "Cheats",

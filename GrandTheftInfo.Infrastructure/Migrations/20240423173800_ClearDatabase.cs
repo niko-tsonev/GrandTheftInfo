@@ -452,7 +452,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Games",
-                columns: new[] { "Id", "Description", "ImageUrl", "Name", "YearPublished" },
+                columns: new[] { "Id", "Description", "ImageUrl", "Name", "DatePublished" },
                 values: new object[,]
                 {
                     { 1, "Los Santos CJ helps family take over.", "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg", "GTA San Andreas", new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified) },

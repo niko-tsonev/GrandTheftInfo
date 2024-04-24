@@ -71,7 +71,7 @@ namespace GrandTheftInfo.Controllers
                 Name = game.Name,
                 Description = game.Description,
                 ImageUrl = game.ImageUrl,
-                YearPublished = game.YearPublished,
+                DatePublished = game.DatePublished,
                 MissionCount = game.MissionCount
             };
 

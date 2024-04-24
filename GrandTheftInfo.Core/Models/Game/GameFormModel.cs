@@ -5,6 +5,8 @@ namespace GrandTheftInfo.Core.Models.Game
 {
     public class GameFormModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(GameNameMaxLength, MinimumLength = GameNameMinLength,
             ErrorMessage = GameNameErrorMessage)]
@@ -22,7 +24,7 @@ namespace GrandTheftInfo.Core.Models.Game
 
         [Required(ErrorMessage = GameYearPublishedError)]
         [Display(Name = "Year Published")]
-        public DateTime? YearPublished { get; set; }
+        public DateTime? DatePublished { get; set; }
 
         [Required]
         public int MissionCount { get; set; }

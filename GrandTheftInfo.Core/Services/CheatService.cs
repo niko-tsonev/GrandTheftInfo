@@ -40,8 +40,8 @@ namespace GrandTheftInfo.Core.Services
                     Name = c.Name,
                     CheatCode = c.CheatCode,
                     Platform = c.Platform,
+                    GameId = c.Game.Id,
                     GameName = c.Game.Name,
-                    GameId = c.Game.Id
                 })
                 .ToListAsync();
 

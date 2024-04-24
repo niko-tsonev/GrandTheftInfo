@@ -93,7 +93,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Name = "GTA San Andreas",
                 Description = "Grand Theft Auto: San Andreas is a 2004 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the seventh title in the Grand Theft Auto series, following 2002's Grand Theft Auto: Vice City. Set within the fictional state of San Andreas, the game follows Carl \"CJ\" Johnson, who returns home after his mother's murder and finds his old gang has lost much of their territory. Over the course of the game, he attempts to re-establish the gang, clashes with corrupt authorities and powerful criminals, and gradually unravels the truth behind his mother's murder.",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg",
-                YearPublished = DateTime.Parse("11/26/2004")
+                DatePublished = DateTime.Parse("11/26/2004")
             };
 
             GameTwo = new Game()
@@ -102,7 +102,7 @@ namespace GrandTheftInfo.Infrastructure.Data.SeedDb
                 Name = "GTA IV",
                 Description = "Grand Theft Auto IV is a 2008 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the sixth main entry in the Grand Theft Auto series, following 2004's Grand Theft Auto: San Andreas, and the eleventh instalment overall. Set in the fictional Liberty City, based on New York City, the single-player story follows Eastern European war veteran Niko Bellic and his attempts to escape his past while under pressure from high-profile criminals. The open world design lets players freely roam Liberty City, consisting of three main islands, and the neighbouring state of ",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
-                YearPublished = DateTime.Parse("12/02/2008")
+                DatePublished = DateTime.Parse("12/02/2008")
             };
         }
 

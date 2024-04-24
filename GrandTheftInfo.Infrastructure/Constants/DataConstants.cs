@@ -12,7 +12,7 @@
         public const string GameDescriptionErrorMessage = "Description must be between {2} and {1} characters long";
 
         public const int GameImageUrlMaxLength = 300;
-        public const string GameYearPublishedError = "YearPublished field is required!";
+        public const string GameYearPublishedError = "DatePublished field is required!";
         #endregion
 
         #region Mission

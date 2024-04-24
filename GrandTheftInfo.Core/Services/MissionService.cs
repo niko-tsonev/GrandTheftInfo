@@ -15,22 +15,6 @@ namespace GrandTheftInfo.Core.Services
             _repository = repository;
         }
 
-        public async Task<int> AddAsync(MissionFormModel model)
-        {
-            var mission = new Mission()
-            {
-                Name = model.Name,
-                Description = model.Description,
-                PlaytroughUrl = model.PlaytroughUrl,
-                GameId = model.GameId
-            };
-
-            await _repository.AddAsync(mission);
-            await _repository.SaveChangesAsync();
-
-            return mission.Id;
-        }
-
         public async Task<IEnumerable<MissionViewModel>> AllAsync()
         {
             var missions = await _repository.AllReadOnly<Mission>()
@@ -48,10 +32,36 @@ namespace GrandTheftInfo.Core.Services
             return missions;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<int> AddAsync(MissionFormModel model)
         {
-            await _repository.DeleteAsync<Mission>(id);
+            var mission = new Mission()
+            {
+                Name = model.Name,
+                Description = model.Description,
+                PlaytroughUrl = model.PlaytroughUrl,
+                GameId = model.GameId
+            };
+
+            await _repository.AddAsync(mission);
             await _repository.SaveChangesAsync();
+
+            return mission.Id;
+        }
+
+        public async Task<MissionFormModel?> GetFormModelByIdAsync(int id)
+        {
+            var mission = await _repository.AllReadOnly<Mission>()
+                .Where(m => m.Id == id)
+                .Select(m => new MissionFormModel()
+                {
+                    Name = m.Name,
+                    Description = m.Description,
+                    PlaytroughUrl = m.PlaytroughUrl,
+                    GameId = m.Game.Id
+                })
+                .FirstOrDefaultAsync();
+
+            return mission;
         }
 
         public async Task EditAsync(int id, MissionFormModel model)
@@ -70,20 +80,10 @@ namespace GrandTheftInfo.Core.Services
             }
         }
 
-        public async Task<MissionFormModel?> GetFormModelByIdAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            var mission = await _repository.AllReadOnly<Mission>()
-                .Where(m => m.Id == id)
-                .Select(m => new MissionFormModel()
-                {
-                    Name = m.Name,
-                    Description = m.Description,
-                    PlaytroughUrl = m.PlaytroughUrl,
-                    GameId = m.Game.Id
-                })
-                .FirstOrDefaultAsync();
-
-            return mission;
+            await _repository.DeleteAsync<Mission>(id);
+            await _repository.SaveChangesAsync();
         }
     }
 }

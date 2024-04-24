@@ -217,6 +217,10 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime?>("DatePublished")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(600)
@@ -232,10 +236,6 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime?>("YearPublished")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("Games");
@@ -244,18 +244,18 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            DatePublished = new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Grand Theft Auto: San Andreas is a 2004 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the seventh title in the Grand Theft Auto series, following 2002's Grand Theft Auto: Vice City. Set within the fictional state of San Andreas, the game follows Carl \"CJ\" Johnson, who returns home after his mother's murder and finds his old gang has lost much of their territory. Over the course of the game, he attempts to re-establish the gang, clashes with corrupt authorities and powerful criminals, and gradually unravels the truth behind his mother's murder.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg",
-                            Name = "GTA San Andreas",
-                            YearPublished = new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Name = "GTA San Andreas"
                         },
                         new
                         {
                             Id = 2,
+                            DatePublished = new DateTime(2008, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Grand Theft Auto IV is a 2008 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the sixth main entry in the Grand Theft Auto series, following 2004's Grand Theft Auto: San Andreas, and the eleventh instalment overall. Set in the fictional Liberty City, based on New York City, the single-player story follows Eastern European war veteran Niko Bellic and his attempts to escape his past while under pressure from high-profile criminals. The open world design lets players freely roam Liberty City, consisting of three main islands, and the neighbouring state of ",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
-                            Name = "GTA IV",
-                            YearPublished = new DateTime(2008, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Name = "GTA IV"
                         });
                 });
 
@@ -621,33 +621,33 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "09a8c032-fbf1-402d-b7fb-81d4f74fd137",
+                            Id = "dad13bb0-67a0-41d8-b5cf-2dca1ef9f439",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "53b644da-447d-4191-9bde-c2ed791e243d",
+                            ConcurrencyStamp = "3dcb258d-e415-4fed-97e0-488f4a753ba1",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guest@mail.com",
                             NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEObSkQG11VIBfoGNEva38AqMu26+UIXrdcatm/m5JuhuvPZwdeKnBW3McL2ymWIFzA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI09Q9jSMVghBCeCcGNXwYgPV/ZMUyXBl5ZKABw3rCVLWKrrx4RDnc7nhdJ0UrC/9A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fe91f48b-1978-46d8-a0c7-b636c4d8e3f4",
+                            SecurityStamp = "1400f485-19c0-44e3-9a0e-faaa38904bb1",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         },
                         new
                         {
-                            Id = "c593f6fb-125c-4651-98d5-39ec62c3fe46",
+                            Id = "7b5f7706-6119-4b0e-97a0-dc94f849668b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fe5db983-5b57-41d9-9ec0-676b4c29a4aa",
+                            ConcurrencyStamp = "addc71d4-e819-4202-8914-844ff0b04cd8",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG7MPNevcvq+bRr7qxDAdckr0aRLxCWrdI6tthfnbYaNvce0qmz5uGzJlkCgtJOqxQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPhYt7OVdwH0UNY1k9wNKCcix7PvLnZDMse3AgB/w4kLzrYytoxeXpQA4bCgFEBw0Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "04e9cfea-e8c1-4c53-880d-fb840c284f67",
+                            SecurityStamp = "f19740f6-92b3-4656-a769-328534a2c47d",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });

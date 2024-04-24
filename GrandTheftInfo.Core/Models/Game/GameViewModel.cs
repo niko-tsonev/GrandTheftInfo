@@ -14,7 +14,7 @@ namespace GrandTheftInfo.Core.Models.Game
 
         public string ImageUrl { get; set; } = null!;
 
-        public DateTime? YearPublished { get; set; }
+        public DateTime? DatePublished { get; set; }
 
         public int MissionCount { get; set; }
     }

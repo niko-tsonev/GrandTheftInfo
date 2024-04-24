@@ -24,7 +24,7 @@ namespace GrandTheftInfo.Core.Services
                     Name = g.Name,
                     Description = g.Description,
                     ImageUrl = g.ImageUrl,
-                    YearPublished = g.YearPublished
+                    DatePublished = g.DatePublished
                 })
                 .ToListAsync();
 
@@ -38,7 +38,7 @@ namespace GrandTheftInfo.Core.Services
                 Name = model.Name,
                 Description = model.Description,
                 ImageUrl = model.ImageUrl,
-                YearPublished = model.YearPublished
+                DatePublished = model.DatePublished
             };
 
             await _repository.AddAsync(game);
@@ -56,7 +56,7 @@ namespace GrandTheftInfo.Core.Services
                     Name = g.Name,
                     Description = g.Description,
                     ImageUrl = g.ImageUrl,
-                    YearPublished = g.YearPublished
+                    DatePublished = g.DatePublished
                 })
                 .FirstOrDefaultAsync();
 
@@ -72,7 +72,7 @@ namespace GrandTheftInfo.Core.Services
                 game.Name = model.Name;
                 game.Description = model.Description;
                 game.ImageUrl = model.ImageUrl;
-                game.YearPublished = model.YearPublished;
+                game.DatePublished = model.DatePublished;
 
                 await _repository.SaveChangesAsync();
             }

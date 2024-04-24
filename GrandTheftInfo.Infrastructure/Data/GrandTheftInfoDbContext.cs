@@ -7,6 +7,8 @@ namespace GrandTheftInfo.Infrastructure.Data
 {
     public class GrandTheftInfoDbContext : IdentityDbContext
     {
+        public static bool IsUnitTest { get; set; }
+
         public GrandTheftInfoDbContext(DbContextOptions<GrandTheftInfoDbContext> options)
             : base(options)
         {

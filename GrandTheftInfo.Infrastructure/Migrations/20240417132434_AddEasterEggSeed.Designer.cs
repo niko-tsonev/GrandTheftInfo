@@ -233,7 +233,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("YearPublished")
+                    b.Property<DateTime>("DatePublished")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -247,7 +247,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                             Description = "Los Santos CJ helps family take over.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg",
                             Name = "GTA San Andreas",
-                            YearPublished = new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            DatePublished = new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -255,7 +255,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                             Description = "Niko helps cousing in Liberty City",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
                             Name = "GTA IV",
-                            YearPublished = new DateTime(2008, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            DatePublished = new DateTime(2008, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

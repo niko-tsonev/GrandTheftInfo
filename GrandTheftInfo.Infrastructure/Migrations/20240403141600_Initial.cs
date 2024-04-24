@@ -71,7 +71,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    YearPublished = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DatePublished = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MissionCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

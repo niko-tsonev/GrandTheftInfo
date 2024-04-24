@@ -73,7 +73,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("YearPublished")
+                    b.Property<DateTime>("DatePublished")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

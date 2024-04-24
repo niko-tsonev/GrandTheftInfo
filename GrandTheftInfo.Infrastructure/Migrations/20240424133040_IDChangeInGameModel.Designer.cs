@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GrandTheftInfo.Infrastructure.Migrations
 {
     [DbContext(typeof(GrandTheftInfoDbContext))]
-    [Migration("20240421105004_AddSaveGameSeed")]
-    partial class AddSaveGameSeed
+    [Migration("20240424133040_IDChangeInGameModel")]
+    partial class IDChangeInGameModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,74 +60,74 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CheatCode = "HESOYAM",
+                            CheatCode = "R1, R2, L1, X, LEFT, DOWN, RIGHT, UP, LEFT, DOWN, RIGHT, UP",
                             GameId = 1,
-                            Name = "Money cheat",
-                            Platform = "PC"
+                            Name = "Health, Armor, and Money ($250,000)",
+                            Platform = "Playstation"
                         },
                         new
                         {
                             Id = 2,
-                            CheatCode = "AEZAKMI",
+                            CheatCode = "L1, R1, SQUARE, R1, LEFT, R2, R1, LEFT, SQUARE, DOWN, L1, L1",
                             GameId = 1,
-                            Name = "No police",
-                            Platform = "PC"
+                            Name = "Infinite Ammo",
+                            Platform = "Playstation"
                         },
                         new
                         {
                             Id = 3,
-                            CheatCode = "BAGUVIX",
+                            CheatCode = "Down, X, Right, Left, Right, R1, Right, Down, Up, Triangle",
                             GameId = 1,
-                            Name = "God mode cheat",
-                            Platform = "PC"
+                            Name = "(Almost) Infinite Health",
+                            Platform = "Playstation"
                         },
                         new
                         {
                             Id = 4,
-                            CheatCode = "DEDAZNAM",
-                            GameId = 2,
-                            Name = "Money cheat",
+                            CheatCode = "HESOYAM",
+                            GameId = 1,
+                            Name = "Health, Armor, and Money ($250,000)",
                             Platform = "PC"
                         },
                         new
                         {
                             Id = 5,
-                            CheatCode = "BALSAMGO",
-                            GameId = 2,
-                            Name = "No police",
+                            CheatCode = "FULLCLIP",
+                            GameId = 1,
+                            Name = "Infinite Ammo",
                             Platform = "PC"
                         },
                         new
                         {
                             Id = 6,
-                            CheatCode = "NIZNAM",
+                            CheatCode = "486-555-0150",
                             GameId = 2,
-                            Name = "God mode cheat",
-                            Platform = "PC"
+                            Name = "Weapons 1",
+                            Platform = "Playstation"
                         },
                         new
                         {
                             Id = 7,
-                            CheatCode = "Down, X, Right, Left, Right, R1, Right, Down, Up, Triangle",
-                            GameId = 1,
-                            Name = "God mode cheat",
+                            CheatCode = "265-555-2423",
+                            GameId = 2,
+                            Name = "Presidente",
                             Platform = "Playstation"
                         },
                         new
                         {
                             Id = 8,
-                            CheatCode = "R1, R2, L1, X, LEFT, DOWN, RIGHT, UP, LEFT, DOWN, RIGHT, UP",
-                            GameId = 1,
-                            Name = "Money cheat",
+                            CheatCode = "267-555-0150",
+                            GameId = 2,
+                            Name = "Raise wanted level",
                             Platform = "Playstation"
                         },
                         new
                         {
                             Id = 9,
-                            CheatCode = "468-555-0100",
+                            CheatCode = "938-555-0100",
                             GameId = 2,
-                            Name = "Change weather",
-                            Platform = "Playstation"
+                            Name = "Spawn a Jetmax boat",
+                            Platform = "PC"
                         },
                         new
                         {
@@ -135,7 +135,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                             CheatCode = "486-555-0150",
                             GameId = 2,
                             Name = "Weapons 1",
-                            Platform = "Playstation"
+                            Platform = "PC"
                         });
                 });
 
@@ -149,13 +149,14 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrlOne")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -165,8 +166,8 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -196,8 +197,8 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                             Id = 3,
                             Description = "The Statue of Happiness's face bears a striking resemblance to former U.S. Secretary of State Hillary Clinton. This resemblance, along with the cup of coffee in her right hand, may be a reference to the Hot Coffee controversy which Clinton took investigation in, also suggesting that new regulations be put on video games.",
                             GameId = 2,
-                            ImageUrlOne = "https://static.wikia.nocookie.net/gtawiki/images/a/ab/StatueofHappiness-GTA4-statue%27sface.jpg/revision/latest/scale-to-width-down/1000?cb=20100401143154",
-                            ImageUrlTwo = "https://static.wikia.nocookie.net/gtawiki/images/f/fa/StatueofHappiness-GTAIV-Statue%27sTorch.jpg/revision/latest?cb=20130813211705",
+                            ImageUrlOne = "https://static.wikia.nocookie.net/gtawiki/images/a/ab/StatueofHappiness-GTA4-statue%27sface.jpg",
+                            ImageUrlTwo = "https://static.wikia.nocookie.net/gtawiki/images/f/fa/StatueofHappiness-GTAIV-Statue%27sTorch.jpg",
                             Name = "Face of the statue & the Hot Coffee"
                         },
                         new
@@ -205,7 +206,7 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                             Id = 4,
                             Description = "The southern door has a sign: \"No Hidden Content This Way\". This is similar to the sign on top of the Gant Bridge in GTA San Andreas and The Hidden Sign in GTA III.",
                             GameId = 2,
-                            ImageUrlOne = "https://static.wikia.nocookie.net/gtawiki/images/7/7b/StatueOfHappiness-GTAIV-NoHiddenContentThisWay.jpg/revision/latest?cb=20140512000301",
+                            ImageUrlOne = "https://static.wikia.nocookie.net/gtawiki/images/7/7b/StatueOfHappiness-GTAIV-NoHiddenContentThisWay.jpg",
                             Name = "\"No Hidden Content This Way\" sign"
                         });
                 });
@@ -218,10 +219,14 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime?>("DatePublished")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -233,9 +238,6 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("DatePublished")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("Games");
@@ -244,18 +246,18 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Los Santos CJ helps family take over.",
+                            DatePublished = new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Grand Theft Auto: San Andreas is a 2004 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the seventh title in the Grand Theft Auto series, following 2002's Grand Theft Auto: Vice City. Set within the fictional state of San Andreas, the game follows Carl \"CJ\" Johnson, who returns home after his mother's murder and finds his old gang has lost much of their territory. Over the course of the game, he attempts to re-establish the gang, clashes with corrupt authorities and powerful criminals, and gradually unravels the truth behind his mother's murder.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg",
-                            Name = "GTA San Andreas",
-                            DatePublished = new DateTime(2004, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Name = "GTA San Andreas"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Niko helps cousing in Liberty City",
+                            DatePublished = new DateTime(2008, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Grand Theft Auto IV is a 2008 action-adventure game developed by Rockstar North and published by Rockstar Games. It is the sixth main entry in the Grand Theft Auto series, following 2004's Grand Theft Auto: San Andreas, and the eleventh instalment overall. Set in the fictional Liberty City, based on New York City, the single-player story follows Eastern European war veteran Niko Bellic and his attempts to escape his past while under pressure from high-profile criminals. The open world design lets players freely roam Liberty City, consisting of three main islands, and the neighbouring state of ",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
-                            Name = "GTA IV",
-                            DatePublished = new DateTime(2008, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Name = "GTA IV"
                         });
                 });
 
@@ -269,8 +271,8 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
@@ -282,8 +284,8 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
                     b.Property<string>("PlaytroughUrl")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 
@@ -295,34 +297,66 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Ride bikes",
+                            Description = "Carl Johnson returns to Los Santos after spending five years in Liberty City when his brother Sweet Johnson informs him about his mother's death. However, when he reaches home to Grove Street, he gets captured by C.R.A.S.H. officers, who take his money and force him to get into their car before dropping him off at Jefferson, a Ballas territory.",
                             GameId = 1,
-                            Name = "First SA Mission",
-                            PlaytroughUrl = "http://google.com"
+                            Name = "In the Beginning",
+                            PlaytroughUrl = "https://www.youtube.com/embed/OpTizzox2Qo?si=K5xZIWQwL6kFdpgW"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Kill ballas",
+                            Description = "Carl meets Ryder at his house in Grove Street, though Ryder is not that happy to see Carl back. Ryder tells Carl that a pizza owner keeps painting over Grove Street tags and decides to give him some shame.",
                             GameId = 1,
-                            Name = "Second SA Mission",
-                            PlaytroughUrl = "http://google2.com"
+                            Name = "Ryder",
+                            PlaytroughUrl = "https://www.youtube.com/embed/LbqKA7cYCQM?si=CIn-_iEtDviV6LUS"
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Help cousing",
-                            GameId = 2,
-                            Name = "First GTA 4 Mission",
-                            PlaytroughUrl = "http://google3.com"
+                            Description = "Carl visits Sweet and Big Smoke at Sweet's house. Sweet questions Carl about what made him return to the hood, and gives him a spray can to let him spray over some enemy graffiti. Sweet, however, changes his mind and decides to go with him.",
+                            GameId = 1,
+                            Name = "Tagging Up Turf",
+                            PlaytroughUrl = "https://www.youtube.com/embed/HRduC_IkmFA?si=-dFIz96gsCFNCgwP"
                         },
                         new
                         {
                             Id = 4,
-                            Description = "Save cousing",
+                            Description = "Sweet, Big Smoke, and Ryder are discussing the rise in crack cocaine in the city. After a brief argument, Ryder and CJ decide to take care of the business.",
+                            GameId = 1,
+                            Name = "Cleaning the Hood",
+                            PlaytroughUrl = "https://www.youtube.com/embed/fUjfkGgZNIk?si=xrtBeDGMPzpePcOr"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Big Smoke, Sweet, and Ryder go to eat, and CJ joins them. They head to Cluckin' Bell and get some orders. While eating, they spot the same Ballas who chased them earlier heading towards Grove Street.",
+                            GameId = 1,
+                            Name = "Drive-Thru",
+                            PlaytroughUrl = "https://www.youtube.com/embed/E1aTlYlfzRk?si=SwSKVp536zSowgDS"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Watch the Introduction, before meeting Roman Bellic and driving him to his apartment.",
                             GameId = 2,
-                            Name = "Second GTA 4 Mission",
-                            PlaytroughUrl = "http://google4.com"
+                            Name = "The Cousins Bellic",
+                            PlaytroughUrl = "https://www.youtube.com/embed/Qo_9uifCivI?si=WTKXuLH87oVARRO6"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Drive Roman to a hardware store, receive his old phone and escape from the loan sharks.",
+                            GameId = 2,
+                            Name = "It's Your Call",
+                            PlaytroughUrl = "https://www.youtube.com/embed/c1_fKy1gcdI?si=uqo3XBtEymWZUnyL"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Pick up Mallorie Bardas and Michelle from the subway station, drive them to Michelle's place, and go buy new clothes.",
+                            GameId = 2,
+                            Name = "Three's a Crowd",
+                            PlaytroughUrl = "https://www.youtube.com/embed/vQEVBOQTjfE?si=uuf7SCZJrVfTqE_N"
                         });
                 });
 
@@ -336,20 +370,25 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
                     b.Property<string>("BlobUri")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
 
                     b.Property<string>("FileName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("UploadDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GameId");
 
                     b.ToTable("SaveGames");
 
@@ -357,10 +396,111 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            BlobUri = "https://grandtheftinfo.blob.core.windows.net/blobgrandtheftinfo/test.rar",
-                            Description = "CJ Max Missions ALL",
-                            FileName = "test1",
-                            UploadDate = new DateTime(2024, 4, 21, 13, 50, 4, 41, DateTimeKind.Local).AddTicks(632)
+                            BlobUri = "https://grandtheftinfo.blob.core.windows.net/blobgrandtheftinfo/test1.rar",
+                            Description = "GTA San Andreas 100 Save",
+                            FileName = "test1.rar",
+                            GameId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BlobUri = "https://grandtheftinfo.blob.core.windows.net/blobgrandtheftinfo/test2.rar",
+                            Description = "GTA San Andreas 60 Save",
+                            FileName = "test2.rar",
+                            GameId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BlobUri = "https://grandtheftinfo.blob.core.windows.net/blobgrandtheftinfo/test3.rar",
+                            Description = "GTA 4 100 Save",
+                            FileName = "test3.rar",
+                            GameId = 2
+                        });
+                });
+
+            modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.Song", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Radio")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("RadioImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("VideoUrl")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("Songs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GameId = 1,
+                            Name = "Rick James - Cold Blooded",
+                            Radio = "Bounce FM",
+                            RadioImageUrl = "https://i1.sndcdn.com/artworks-000072126799-6e0z41-t500x500.jpg",
+                            VideoUrl = "https://www.youtube.com/watch?v=Vm4jJQFXWp4&ab_channel=Micahisgod"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GameId = 1,
+                            Name = "Ohio Players - Love Rollercoaster",
+                            Radio = "Bounce FM",
+                            RadioImageUrl = "https://i1.sndcdn.com/artworks-000072126799-6e0z41-t500x500.jpg",
+                            VideoUrl = "https://www.youtube.com/watch?v=Gm8lcoPZtBY&ab_channel=drewsmusical"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GameId = 2,
+                            Name = "Mobb Deep - Dirty New Yorker",
+                            Radio = "The Beat 102.7",
+                            RadioImageUrl = "https://i.ibb.co/sjXcxBw/The-Beat-102-7-29.png",
+                            VideoUrl = "https://www.youtube.com/watch?v=o1kO1JM1T6A&ab_channel=VevoMusicGroup"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GameId = 2,
+                            Name = "Nas - War Is Necessary",
+                            Radio = "The Beat 102.7",
+                            RadioImageUrl = "https://i.ibb.co/sjXcxBw/The-Beat-102-7-29.png",
+                            VideoUrl = "https://www.youtube.com/watch?v=PIwb70xCqaQ&ab_channel=RapIsTheRealShit"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GameId = 1,
+                            Name = "The Edge - David McCallum",
+                            Radio = "Fusion FM",
+                            RadioImageUrl = "https://static.wikia.nocookie.net/gtawiki/images/6/65/Fusion-FM-Logo%2C_IV.png",
+                            VideoUrl = "https://www.youtube.com/embed/y05mMRJrUnE?si=w5bWjYkcXIzQdclZ"
                         });
                 });
 
@@ -428,10 +568,6 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -484,7 +620,39 @@ namespace GrandTheftInfo.Infrastructure.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+                    b.HasData(
+                        new
+                        {
+                            Id = "dad13bb0-67a0-41d8-b5cf-2dca1ef9f439",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3dcb258d-e415-4fed-97e0-488f4a753ba1",
+                            Email = "guest@mail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "guest@mail.com",
+                            NormalizedUserName = "guest@mail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI09Q9jSMVghBCeCcGNXwYgPV/ZMUyXBl5ZKABw3rCVLWKrrx4RDnc7nhdJ0UrC/9A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1400f485-19c0-44e3-9a0e-faaa38904bb1",
+                            TwoFactorEnabled = false,
+                            UserName = "guest@mail.com"
+                        },
+                        new
+                        {
+                            Id = "7b5f7706-6119-4b0e-97a0-dc94f849668b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "addc71d4-e819-4202-8914-844ff0b04cd8",
+                            Email = "admin@mail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@MAIL.COM",
+                            NormalizedUserName = "ADMIN@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPhYt7OVdwH0UNY1k9wNKCcix7PvLnZDMse3AgB/w4kLzrYytoxeXpQA4bCgFEBw0Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f19740f6-92b3-4656-a769-328534a2c47d",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@mail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -572,86 +740,6 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("MiddleName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "c587c054-fd8a-4638-955f-7f2427990c5a",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "4db079a4-67e5-4703-9855-defffb1063af",
-                            Email = "guest@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "guest@mail.com",
-                            NormalizedUserName = "guest@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN2OsoCo53AiHriz03ERgwlIfcCK8l1akwJLm7j7PIdOCM/ln+Gj5Zhd0c/Fr6H3lw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "161016c0-d712-4dd3-903a-d5c667d90f99",
-                            TwoFactorEnabled = false,
-                            UserName = "guest@mail.com",
-                            CreatedOn = new DateTime(2024, 4, 21, 13, 50, 4, 29, DateTimeKind.Local).AddTicks(3852),
-                            FirstName = "Guest",
-                            IsDeleted = false,
-                            LastName = "Guestov",
-                            MiddleName = "Guestov",
-                            ModifiedOn = new DateTime(2024, 4, 21, 13, 50, 4, 29, DateTimeKind.Local).AddTicks(3892)
-                        },
-                        new
-                        {
-                            Id = "ffd97e69-bf4e-452c-9a20-45e8a539eddc",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2b16b0e5-6de5-4a28-981e-866d4f52df04",
-                            Email = "admin@mail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@MAIL.COM",
-                            NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENb2rlBIGlLBzEuhqCF5hg8ns8MTJ8v3ZUV+QQC6MVBJkRrs8xfKvpzLcxzvAw4HyQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "44a06930-e7c3-40e2-a4be-55c5fbc6f3c5",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@mail.com",
-                            CreatedOn = new DateTime(2024, 4, 21, 13, 50, 4, 30, DateTimeKind.Local).AddTicks(3538),
-                            FirstName = "Great",
-                            IsDeleted = false,
-                            LastName = "Admin",
-                            MiddleName = "Adminov",
-                            ModifiedOn = new DateTime(2024, 4, 21, 13, 50, 4, 30, DateTimeKind.Local).AddTicks(3540)
-                        });
-                });
-
             modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.Cheat", b =>
                 {
                     b.HasOne("GrandTheftInfo.Infrastructure.Data.Models.Game", "Game")
@@ -675,6 +763,28 @@ namespace GrandTheftInfo.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.Mission", b =>
+                {
+                    b.HasOne("GrandTheftInfo.Infrastructure.Data.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.SaveGame", b =>
+                {
+                    b.HasOne("GrandTheftInfo.Infrastructure.Data.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("GrandTheftInfo.Infrastructure.Data.Models.Song", b =>
                 {
                     b.HasOne("GrandTheftInfo.Infrastructure.Data.Models.Game", "Game")
                         .WithMany()
