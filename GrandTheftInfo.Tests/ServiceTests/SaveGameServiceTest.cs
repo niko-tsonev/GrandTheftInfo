@@ -29,7 +29,7 @@ namespace GrandTheftInfo.Tests.ServiceTests
         {
             _repo = new Repository(DatabaseMock.Instance);
 
-            _blobServiceClientMock = new Mock<BlobServiceClient>("DefaultEndpointsProtocol=https;AccountName=grandtheftinfo;AccountKey=9Rg/8IyOBFw/wZI8g/LIctIYEhG5lygx10Z32uCP6mAHEG5abalyKC8hlko6+8N5Qd1J6TSm7miI+AStiMNJ0g==;EndpointSuffix=core.windows.net");
+            _blobServiceClientMock = new Mock<BlobServiceClient>("");
             _blobContainerClientMock = new Mock<BlobContainerClient>(new Uri("https://youraccount.blob.core.windows.net/yourcontainer"), null);
 
             _saveGameService = new SaveGameService(_repo, _blobServiceClientMock.Object);
